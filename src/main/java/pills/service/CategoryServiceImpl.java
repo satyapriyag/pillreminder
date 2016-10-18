@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pills.models.Category;
+import pills.entity.Category;
 import pills.models.CategoryModel;
 import pills.utilities.MappingUtility;
 
@@ -29,7 +29,7 @@ public class CategoryServiceImpl implements CategoryService{
 	public void deleteCategory(Category category){
 		categoryDao.delete(category);
 	}
-	public CategoryModel viewCategory(Long id){
+	public CategoryModel viewCategory(Integer id){
 		return mapUtility.mapCategory(categoryDao.getById(id));
 	}
 	public List<CategoryModel> viewAll(){

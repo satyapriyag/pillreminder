@@ -5,12 +5,14 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import pills.models.Category;
+import pills.entity.Category;
+import pills.entity.Pill;
 
 @Repository
 @Transactional
@@ -29,7 +31,15 @@ public class CategoryDaoImpl implements CategoryDao{
   }
   
   public void delete(Category category) {
-    getSession().delete(category);
+	Session session = getSession();
+	Query q = session.createQuery("from Pill where pill_category_id = :categoryId");
+	q.setParameter("categoryId", category.getCategoryId());
+	@SuppressWarnings("unchecked")
+	List<Pill> pills = q.list();
+	for(Pill pill:pills){
+		session.delete(pill);
+	}
+    session.delete(category);
     return;
   }
   
@@ -38,7 +48,7 @@ public class CategoryDaoImpl implements CategoryDao{
     return getSession().createQuery("from Category").list();
   }
 
-  public Category getById(long id) {
+  public Category getById(Integer id) {
 	Category category = (Category) getSession().load(Category.class, id);
 	Hibernate.initialize(category);
 	return category;

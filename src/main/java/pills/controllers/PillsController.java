@@ -14,51 +14,48 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import inti.ws.spring.exception.client.BadRequestException;
-import inti.ws.spring.exception.client.NotFoundException;
-
-import pills.models.AddCategoryModel;
-import pills.entity.Category;
-import pills.models.CategoryModel;
-import pills.service.CategoryService;
+import pills.models.AddPillModel;
+import pills.entity.Pill;
+import pills.models.PillModel;
+import pills.service.PillService;
 
 @RestController
-@RequestMapping(value="/categories")
-public class CategoriesController {
+@RequestMapping(value="/pills")
+public class PillsController {
 
   @Autowired
-  private CategoryService categoryService;
+  private PillService pillService;
   
   @RequestMapping(method = RequestMethod.GET)
   @ResponseStatus(HttpStatus.OK)
-  public List<CategoryModel> viewAll() throws BadRequestException{
-	  return categoryService.viewAll();
+  public List<PillModel> viewAll(){
+	  return pillService.viewAll();
   }
   
   @RequestMapping(method = RequestMethod.POST)
   @ResponseStatus(HttpStatus.CREATED)
-  public CategoryModel create(@RequestBody AddCategoryModel category) throws BadRequestException {
-     return categoryService.addCategory(category.getCategoryName());
+  public PillModel create(@RequestBody AddPillModel pill) {
+     return pillService.addPill(pill);
   }
   
   @RequestMapping(value="/{id}",method = RequestMethod.GET)
   @ResponseStatus(HttpStatus.OK)
-  public CategoryModel view(@PathVariable Integer id){
-	 return categoryService.viewCategory(id);
+  public PillModel view(@PathVariable Integer id){
+	 return pillService.viewPill(id);
   }
   
   @RequestMapping(value="/{id}",method = RequestMethod.PATCH)
   @ResponseStatus(HttpStatus.OK)
-  public CategoryModel update(@RequestBody CategoryModel category) {
-	  categoryService.updateCategory(category);
-	  return category;
+  public PillModel update(@RequestBody PillModel pill) {
+	  pillService.updatePill(pill);
+	  return pill;
   }
   
   @RequestMapping(value="/{id}",method = RequestMethod.DELETE)
   @ResponseStatus(HttpStatus.OK)
-  public void delete(@PathVariable Integer id) throws NotFoundException,BadRequestException {
-      Category category = new Category(id);
-      categoryService.deleteCategory(category);
+  public void delete(@PathVariable Integer id) {
+      Pill pill = new Pill(id);
+      pillService.deletePill(pill);
   }
 
 } 
