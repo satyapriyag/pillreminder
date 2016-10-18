@@ -1,0 +1,200 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# PillReminder
+
+Pill Reminder is a simple API allowing consumers to view pills, categories and get reminders.
+
+## Categories Collection [/categories]
+
+### List All Categories [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": "1",
+                "name": "test"
+            }
+        ]
+
+### Create a New Category [POST]
+
+You may create your own category using this action. It takes a JSON
+object containing name of the category.
+
++ Request (application/json)
+
+        {
+            "name": "test",
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /categories/1
+
+    + Body
+
+            {
+                "id": "1",
+                "name": "test"
+            }
+## Individual Category [/categories/{id}]
+
+### Retrieve a specific Category [GET]
+
++ Response  200 (application/json)
+
+        [
+            {
+                "id": "1",
+                "name": "test"
+            }
+        ]
+
+### Update a specific Category [PUT]
+
++ Response 200 (OK)
+
+### Delete a specific Category [DELETE]
+
++ Response 200 (OK)
+
+##Retrieve all pills for specific category [/categories/{category_id}/pills]
+
++Response 200 (application/json)
+
+        [
+            {
+                "pill_id": "1",
+                "pill_name": "test",
+                "pill_category":"1"
+            },
+            {
+                "pill_id": "2",
+                "pill_name": "test",
+                "pill_category":"1"
+            }
+        ]
+
+## Pills Collection [/pills]
+
+### List All Categories [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": "1",
+                "name": "test"
+            }
+        ]
+
+### Create a New Category [POST]
+
+You may create your own pill using this action. It takes a JSON
+object containing name and category of the pill.
+
++ Request (application/json)
+
+        {
+            "name": "test",
+            "category_id": "1"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /pills/1
+
+    + Body
+
+            {
+                "id": "1",
+                "name": "test",
+                "category_id": "1"
+            }
+
+
+## Individual Pill [/pills/{id}]
+
+### Retrieve a specific Pill [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "pill_id": "1",
+                "pill_name": "test",
+                "pill_category":"1"
+            }
+        ]
+
+### Update a specific Pill [PUT]
+
++ Response 200 (OK)
+
+### Delete a specific Pill [DELETE]
+
++ Response 200 (OK)
+
+##Alternatives [/pills/{id}/alternatives]
+
+### Retrieve all alternative pills for specific pill id [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "pill_id": "1",
+                "pill_name": "test",
+                "pill_category":"1"
+            }
+        ]
+
+## Individual User [/users/{id}]
+
+### Retrieve a specific User [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "user_id": "1",
+                "user_name": "test",
+                "user_email": "test@test",
+                "user_contact":"1"
+            }
+        ]
+
+## Alarms [/users/{id}/alarms]
+
+### Retrieve all alarms for specific User [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "user_id": "1",
+                "pill_id": "1",
+                "alarm_timestamp": "test",
+                "start_date":"1",
+                "end_date": "",
+                "recurrence":""
+            }
+        ]
+
+##Role [/user/{id}/role]
+
+### Retrieve the role for specific user
+
++ Response 200 (application/json)
+
+        [
+            {
+              "role" : "admin"
+            }
+        ]
