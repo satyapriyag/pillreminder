@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Categories</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<link rel="stylesheet" href="/css/bootstrap.min.css" media="screen"/>
+	<link rel="stylesheet" href="/css/jquery.dataTables.min.css" />
+	<link rel="stylesheet" href="/css/pills.css " />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/pills.js"></script>
+	<script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+  <h1 class='text-center'>Pill Reminder</h1>
+
+<div class="jumbotron vertical-center"> 
+<fieldset>
+	<div class="pagination-centered">
+<!-- <div class="col-xs-4 col-xs-offset-4"> -->
+            <Label >Categories</Label><br/><br/>
+
+          <button class="btn btn-primary" id="getCategories">View All</button>
+          <button class="btn btn-primary" id="addCategories">Add </button>
+          <button class="btn btn-primary" id="editButton">Edit</button>
+          <button class="btn btn-primary" id="deleteButton">Delete</button>
+
+      <div id="editBody">
+      <div class="form-group">
+
+		 <form id = "categories" class="col-md-6">
+		 </form>
+
+	  </div>
+		  <div id="editItems">
+                 <h2>Edit Category</h2>
+		  		<form enctype="multipart/form-data" id="EditCategoryForm" >
+
+            		<div class="form-group">
+	                    <label class="col-lg-3 control-label">Category Name</label>
+	                    <div class="col-lg-9">
+	                    	<input type="text" class="form-control" id="cname" name="categoryName" /><br/>
+	                    	 <button id="editSubmit" type="submit" class="btn btn-primary" name="button">Save</button>
+	                    </div>
+                	</div>           		
+
+               </form>
+  
+		  </div>
+		  <div id="addItems">
+                 <h2>Add a Category</h2>
+		  		<form enctype="multipart/form-data" id="AddCategoryForm" class="col-md-6">
+
+            		<div class="form-group">
+	                    <label class="col-lg-3 control-label">Category Name</label>
+	                    <div class="col-lg-9">
+	                    	<input type="text" class="form-control" id="addname" name="categoryName" />
+	                    	 <button id="addSubmit" class="btn btn-primary" name="button">Save</button>
+	                    </div>
+                	</div>           		
+
+               </form>
+  
+		  </div>
+		  
+		 
+	 </div>
+    </div>
+    </fieldset>
+</div>
+</div>
+</body>
+</html>

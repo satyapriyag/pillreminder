@@ -12,4 +12,5 @@ public interface PillService{
 	public PillModel viewPill(Integer id);
 	public List<PillModel> viewAll();
 	public void updatePill(PillModel pill);
+	public List<PillModel> getPillsForCategory(Integer categoryId);
 }

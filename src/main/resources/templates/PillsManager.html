@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Pills</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<link rel="stylesheet" href="/css/bootstrap.min.css" media="screen"/>
+	<link rel="stylesheet" href="/css/jquery.dataTables.min.css" />
+	<link rel="stylesheet" href="/css/pills.css " />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/pillManager.js"></script>
+	<script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="/js/dataTables.bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+<div class="jumbotron">
+<h2 class='text-center'>Pill Reminder</h2>
+					<div class="form-group">
+				      <label class="col-lg-3 control-label" for="category">Category</label>
+				      <div >
+				      <select class="form-control" id="selectCategory" name="categoryId">
+				      <option value="0">--Select a category to view pills--  </option>
+				      </select>
+				      </div>
+				      <div id="viewPills" >
+				      <br/>
+				      <label class="col-lg-3" >Pills in this category:</label>
+				      <button class="btn btn-primary" id="addPill">Add </button>
+          			  <button class="btn btn-primary" id="editPill">Edit</button>
+          			  <button class="btn btn-primary" id="deletePill">Delete</button>
+          			  
+          			  	<div id="viewPillsList"  >	
+          			  	</div>
+				      </div>
+				      
+		<div id="addPills">
+                 <h2>Add a Pill to Category</h2>
+		  		<form enctype="multipart/form-data" id="AddPillForm" >
+
+            		<div class="form-group">
+	                    <label class="col-lg-3">Pill Name</label>
+	                    <div class="col-lg-9">
+	                    	<input type="text" class="form-control" id="addPillName" name="addPillName" />
+	                    	 <button id="addPillSubmit" class="btn btn-primary" name="button">Save</button>
+	                    </div>
+                	</div>           		
+
+               </form>
+  
+		  </div>
+		  
+		  <div id="editPills">
+                 <h2>Edit this Pill</h2>
+		  		<form enctype="multipart/form-data" id="EditPillForm" >
+
+            		<div class="form-group">
+	                    <label class="col-lg-3">Pill Name</label>
+	                    <div class="col-lg-9">
+	                    	<input type="text" class="form-control" id="editPillName" name="editPillName" />
+	                    </div>
+	                    <label class="col-lg-3">Category</label>
+	                    <div class="col-lg-9">
+	                    <select class="form-control" id="editCategory" name="editCategoryId"></select>
+	                    </div>
+	                    <button id="editPillSubmit" class="btn btn-primary" name="button">Save</button>
+	                    
+                	</div>           		
+
+               </form>
+  
+		  </div>
+				      </div>
+				      
+
+</div>
+</div>
+</body>
+</html>
+

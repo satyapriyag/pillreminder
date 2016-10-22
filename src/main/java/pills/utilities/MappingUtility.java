@@ -3,17 +3,27 @@ package pills.utilities;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pills.entity.Alarm;
+import pills.entity.Alternative;
 import pills.entity.Category;
 import pills.entity.Pill;
+import pills.entity.User;
+import pills.models.AddAlarmModel;
 import pills.models.AddPillModel;
+import pills.models.AlarmModel;
 import pills.models.CategoryModel;
 import pills.models.PillModel;
+import pills.service.PillService;
 
 @Service
 public class MappingUtility {
 
+	@Autowired
+	PillService service ;
+	
 	public List<CategoryModel> mapCategories(List<Category> categories) {
 		List<CategoryModel> categoryModels = new ArrayList<>();
 		for (Category category : categories) {
@@ -34,6 +44,17 @@ public class MappingUtility {
 		category.setCategoryId(categoryModel.getCategoryId());
 		category.setCategoryName(categoryModel.getCategoryName());
 		return category;
+	}
+	
+	public List<PillModel> mapAlternatives(List<Alternative> alternatives){
+		List<PillModel> pills = new ArrayList<>();
+		for(Alternative alternative:alternatives){
+			System.out.println("alt id "+alternative.getAltId());
+			System.out.println(alternative.getPillByAlternatePillId().getPillName());
+			pills.add(mapPill(alternative.getPillByAlternatePillId()));
+		}
+		return pills;
+		
 	}
 	public List<PillModel> mapPills(List<Pill> pills) {
 		List<PillModel> pillModels = new ArrayList<>();
@@ -65,4 +86,52 @@ public class MappingUtility {
 		pill.setCategory(new Category(pillModel.getPillCategoryId()));
 		return pill;
 	}
+	public List<AlarmModel> mapAlarms(List<Alarm> alarms) {
+		List<AlarmModel> alarmModels = new ArrayList<>();
+		for (Alarm alarm : alarms) {
+			alarmModels.add(mapAlarm(alarm));
+		}
+		return alarmModels;
+	}
+	
+	public AlarmModel mapAlarm(Alarm alarm) {
+		AlarmModel alarmModel = new AlarmModel();
+		alarmModel.setAId(alarm.getAId());
+		alarmModel.setAPillId(alarm.getPill().getPillId());
+		alarmModel.setAUserId(alarm.getUser().getUserId());
+		alarmModel.setAStartDate(alarm.getAStartDate());
+		alarmModel.setAEndDate(alarm.getAEndDate());
+		alarmModel.setARecurrence(alarm.getARecurrence());
+		return alarmModel;
+	}
+	
+	
+	public Alarm mapAlarmModel(AlarmModel alarmModel){
+		Alarm alarm = new Alarm();
+		alarm.setAId(alarmModel.getAId());
+		alarm.setPill(new Pill(alarmModel.getAPillId()));
+		alarm.setUser(new User(alarmModel.getAUserId()));
+		alarm.setAStartDate(alarmModel.getAStartDate());
+		alarm.setAEndDate(alarmModel.getAEndDate());
+		alarm.setARecurrence(alarmModel.getARecurrence());
+		return alarm;
+	}
+	
+	public Alarm mapAddAlarmModel(AddAlarmModel alarmModel){
+		Alarm alarm = new Alarm();
+		System.out.println(alarmModel.getAPillId());
+		/*PillModel pillModel = service.viewPill(alarmModel.getPillId());//new Pill(alarmModel.getPillId());
+		Pill pill = new Pill();
+		pill.setPillName(pillModel.getPillName());
+		pill.setCategory(new Category(pillModel.getPillCategoryId()));
+		System.out.println(pill.getPillName()+" "+alarmModel.getPillId());*/
+		alarm.setUser(new User(alarmModel.getAUserId()));
+		alarm.setPill(new Pill(alarmModel.getAPillId()));
+		
+		alarm.setAStartDate(alarmModel.getAStartDate());
+		alarm.setAEndDate(alarmModel.getAEndDate());
+		alarm.setARecurrence(alarmModel.getARecurrence());
+		return alarm;
+	}
+	
 }

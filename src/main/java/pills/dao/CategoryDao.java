@@ -1,4 +1,4 @@
-package pills.service;
+package pills.dao;
 
 import java.util.List;
 

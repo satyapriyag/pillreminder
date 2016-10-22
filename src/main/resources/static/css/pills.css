@@ -1,0 +1,19 @@
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 50vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+
+.divider{
+    width:10px;
+    height:auto;
+    display:inline-block;
+}
+
+body {
+  font-family: 'Oswald', sans-serif;
+}

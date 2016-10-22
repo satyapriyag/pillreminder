@@ -3,20 +3,20 @@ package pills.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import inti.ws.spring.exception.client.BadRequestException;
 import pills.models.AddPillModel;
 import pills.entity.Pill;
 import pills.models.PillModel;
+import pills.service.AlternativeService;
 import pills.service.PillService;
 
 @RestController
@@ -25,6 +25,9 @@ public class PillsController {
 
   @Autowired
   private PillService pillService;
+  
+  @Autowired
+  private AlternativeService alternativeService;
   
   @RequestMapping(method = RequestMethod.GET)
   @ResponseStatus(HttpStatus.OK)
@@ -35,6 +38,7 @@ public class PillsController {
   @RequestMapping(method = RequestMethod.POST)
   @ResponseStatus(HttpStatus.CREATED)
   public PillModel create(@RequestBody AddPillModel pill) {
+	 System.out.println(pill.getPillCategoryId());
      return pillService.addPill(pill);
   }
   
@@ -58,4 +62,9 @@ public class PillsController {
       pillService.deletePill(pill);
   }
 
+  @RequestMapping(value="/{id}/alternatives",method = RequestMethod.GET)
+  @ResponseStatus(HttpStatus.OK)
+  public List<PillModel> getPills(@PathVariable Integer id) throws BadRequestException {
+  	return alternativeService.getByPillId(id);
+  }
 } 

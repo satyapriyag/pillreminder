@@ -1,4 +1,4 @@
-package pills.service;
+package pills.dao;
 
 import java.util.List;
 
@@ -48,5 +48,11 @@ public class PillDaoImpl implements PillDao{
     getSession().update(pill);
     return;
   }
+  
+  @SuppressWarnings("unchecked")
+  public List<Pill> getByCategoryId(Integer id){
+	return getSession().createQuery("from Pill where pill_category_id ="+id).list();
+  }
+
 
 } // class PillDao

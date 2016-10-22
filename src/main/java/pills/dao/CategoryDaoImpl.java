@@ -1,4 +1,4 @@
-package pills.service;
+package pills.dao;
 
 import java.util.List;
 
@@ -26,8 +26,7 @@ public class CategoryDaoImpl implements CategoryDao{
   }
 
   public void save(Category category) {
-    getSession().save(category);
-    return;
+	  getSession().save(category);
   }
   
   public void delete(Category category) {

@@ -1,4 +1,4 @@
-package pills.service;
+package pills.dao;
 
 import java.util.List;
 
@@ -10,4 +10,5 @@ public interface PillDao{
 	public List<Pill> getAll();
 	public Pill getById(Integer id);
 	public void update(Pill pill);
+	public List<Pill> getByCategoryId(Integer id);
 }
