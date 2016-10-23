@@ -19,4 +19,5 @@ public interface AlarmDao{
 	public Alarm getById(Integer id);
 	public List<Alarm> getByUserId(Integer UserId);
 	public List<Alarm> getByRecurrence(int time);
+	public List<Alarm> getForToday(Integer UserId);
 }

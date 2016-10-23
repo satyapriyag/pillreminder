@@ -16,6 +16,7 @@ import inti.ws.spring.exception.client.NotFoundException;
 import pills.entity.Alarm;
 import pills.models.AddAlarmModel;
 import pills.models.AlarmModel;
+import pills.models.UserAlarmModel;
 import pills.service.AlarmService;
 
 @RestController
@@ -56,7 +57,7 @@ public class AlarmController {
 	 */
 	@RequestMapping(value="/{id}",method = RequestMethod.GET)
 	  @ResponseStatus(HttpStatus.OK)
-	  public AlarmModel view(@PathVariable Integer id) throws NotFoundException{
+	  public UserAlarmModel view(@PathVariable Integer id) throws NotFoundException{
 		 return alarmService.viewAlarm(id);
 	  }
 	  

@@ -25,8 +25,7 @@ import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name="pill"
-    ,catalog="pillreminder"
-    , uniqueConstraints = @UniqueConstraint(columnNames="pill_name") 
+    ,catalog="pillreminder" 
 )
 @SQLDelete(sql = "UPDATE pill SET deleted = '1' WHERE pill_id = ?")
 //Filter added to retrieve only records that have not been soft deleted.

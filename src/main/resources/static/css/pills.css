@@ -1,3 +1,9 @@
+html {
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+}
 
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
@@ -7,13 +13,32 @@
   align-items: center;
 }
 
-
+.li{
+	background-color:#D3D3D3;
+}
 .divider{
     width:10px;
-    height:auto;
-    display:inline-block;
+    height:10px;
 }
 
 body {
   font-family: 'Oswald', sans-serif;
+}
+
+.completed_item {
+text-decoration: line-through;
+}
+
+.modal-header {
+    background-color: #337ab7;
+    border-color: #337ab7;
+    color: #fff;
+    z-index: 2;
+  min-height: 16.4286px;
+  padding: 10px 15px;
+}
+
+.form-group {
+  padding: 30px 0;
+  background-color: #006dcc;
 }

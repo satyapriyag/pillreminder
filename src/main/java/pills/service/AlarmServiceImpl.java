@@ -11,6 +11,7 @@ import pills.dao.AlarmDao;
 import pills.entity.Alarm;
 import pills.models.AddAlarmModel;
 import pills.models.AlarmModel;
+import pills.models.UserAlarmModel;
 import pills.utilities.MappingUtility;
 
 @Service
@@ -31,9 +32,9 @@ public class AlarmServiceImpl implements AlarmService{
 	public void deleteAlarm(Alarm alarm){
 		alarmDao.delete(alarm);
 	}
-	public AlarmModel viewAlarm(Integer id){
+	public UserAlarmModel viewAlarm(Integer id){
 		Alarm alarm =alarmDao.getById(id);
-		return mapUtility.mapAlarm(alarm);
+		return mapUtility.mapAlarmForUser(alarm);
 	}
 	public List<AlarmModel> viewAll(){
 		List<Alarm> alarms =alarmDao.getAll();
@@ -43,13 +44,17 @@ public class AlarmServiceImpl implements AlarmService{
 		Alarm alarm = mapUtility.mapAlarmModel(alarmModel);
 		alarmDao.update(alarm);
 	}
-	public List<AlarmModel> getByUserId(Integer userId){
+	public List<UserAlarmModel> getByUserId(Integer userId){
 		List<Alarm> alarms = alarmDao.getByUserId(userId);
-		return mapUtility.mapAlarms(alarms);
+		return mapUtility.mapAlarmsForUser(alarms);
 	}
 	public List<AlarmModel> getByRecurrence(int interval){
 		List<Alarm> alarms = alarmDao.getByRecurrence(interval);
 		return mapUtility.mapAlarms(alarms);
+	}
+	public List<UserAlarmModel> getForToday(Integer userId){
+		List<Alarm> alarms = alarmDao.getForToday(userId);
+		return mapUtility.mapAlarmsForUser(alarms);
 	}
 
 }

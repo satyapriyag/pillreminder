@@ -50,8 +50,8 @@ $(document).on('change', '#selectCategory', function(){
 	$('#viewPills').show();
 });
 
-$(document).on('click','#addPill',function(){
-	$('#viewPillsList').hide();
+$(document).on('click','#addPillButton',function(){
+	$('#viewPills').hide();
 	$('#addPills').show();
 		
 });
@@ -80,7 +80,7 @@ $(document).on('click','#addPillSubmit', function(){
 });
 
 $(document).on('click','#editPill',function(){
-	$('#viewPillsList').hide();
+	$('#viewPills').hide();
 	$('#addPills').hide();
 
 	

@@ -1,6 +1,5 @@
 package pills.service;
 
-import pills.entity.Category;
 import pills.models.CategoryModel;
 
 import java.util.List;

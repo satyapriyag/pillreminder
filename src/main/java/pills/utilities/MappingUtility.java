@@ -13,9 +13,12 @@ import pills.entity.Pill;
 import pills.entity.User;
 import pills.models.AddAlarmModel;
 import pills.models.AddPillModel;
+import pills.models.AddUserModel;
 import pills.models.AlarmModel;
 import pills.models.CategoryModel;
 import pills.models.PillModel;
+import pills.models.UserAlarmModel;
+import pills.models.UserModel;
 import pills.service.PillService;
 
 @Service
@@ -105,6 +108,26 @@ public class MappingUtility {
 		return alarmModel;
 	}
 	
+	public List<UserAlarmModel> mapAlarmsForUser(List<Alarm> alarms) {
+		List<UserAlarmModel> alarmModels = new ArrayList<>();
+		for (Alarm alarm : alarms) {
+			alarmModels.add(mapAlarmForUser(alarm));
+		}
+		return alarmModels;
+	}
+	
+	public UserAlarmModel mapAlarmForUser(Alarm alarm) {
+		UserAlarmModel alarmModel = new UserAlarmModel();
+		alarmModel.setAId(alarm.getAId());
+		alarmModel.setAPillName(alarm.getPill().getPillName());
+		alarmModel.setAPillId(alarm.getPill().getPillId());
+		alarmModel.setACategorylId(alarm.getPill().getCategory().getCategoryId());
+		alarmModel.setAUserId(alarm.getUser().getUserId());
+		alarmModel.setAStartDate(alarm.getAStartDate());
+		alarmModel.setAEndDate(alarm.getAEndDate());
+		alarmModel.setARecurrence(alarm.getARecurrence());
+		return alarmModel;
+	}
 	
 	public Alarm mapAlarmModel(AlarmModel alarmModel){
 		Alarm alarm = new Alarm();
@@ -132,6 +155,40 @@ public class MappingUtility {
 		alarm.setAEndDate(alarmModel.getAEndDate());
 		alarm.setARecurrence(alarmModel.getARecurrence());
 		return alarm;
+	}
+	
+	public List<UserModel> mapUsers(List<User> users) {
+		List<UserModel> userModels = new ArrayList<>();
+		for (User user : users) {
+			userModels.add(mapUser(user));
+		}
+		return userModels;
+	}
+	
+	public UserModel mapUser(User user) {
+		UserModel userModel = new UserModel();
+		userModel.setUserId(user.getUserId());
+		userModel.setUserName(user.getUserName());
+		userModel.setUserEmail(user.getUserEmail());
+		userModel.setUserContact(user.getUserContact());
+		return userModel;
+	}
+	
+	public User mapUserModel(UserModel userModel){
+		User user = new User();
+		user.setUserId(userModel.getUserId());
+		user.setUserName(userModel.getUserName());
+		user.setUserEmail(userModel.getUserEmail());
+		user.setUserContact(userModel.getUserContact());
+		return user;
+	}
+	
+	public User mapAddUserModel(AddUserModel userModel){
+		User user = new User();
+		user.setUserName(userModel.getUserName());
+		user.setUserEmail(userModel.getUserEmail());
+		user.setUserContact(userModel.getUserContact());
+		return user;
 	}
 	
 }

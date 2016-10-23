@@ -57,9 +57,8 @@ public class PillsController {
   
   @RequestMapping(value="/{id}",method = RequestMethod.DELETE)
   @ResponseStatus(HttpStatus.OK)
-  public void delete(@PathVariable Integer id) {
-      Pill pill = new Pill(id);
-      pillService.deletePill(pill);
+  public void delete(@PathVariable Integer id) throws BadRequestException {
+      pillService.deletePill(id);
   }
 
   @RequestMapping(value="/{id}/alternatives",method = RequestMethod.GET)

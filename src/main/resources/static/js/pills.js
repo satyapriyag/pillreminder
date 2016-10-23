@@ -1,7 +1,8 @@
 $(document).ready(function(){
 	$('#editItems').hide();
 	$('#addItems').hide();
-
+	$('#categories').hide();
+	
 	$('#getCategories').click(function(){
 		$('#editItems').hide();
 		$('#addItems').hide();
@@ -25,6 +26,7 @@ $(document).ready(function(){
 	    		alert('Oops! Error');
 	    	}
 		});
+
 		$('#categories').show();
 
 });

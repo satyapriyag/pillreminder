@@ -58,4 +58,8 @@ public class AlarmDaoImpl implements AlarmDao{
 	  return getSession().createQuery("from Alarm where a_recurrence ="+time).list();
   }
 
+  @SuppressWarnings("unchecked")
+  public List<Alarm> getForToday(Integer UserId){
+	  return getSession().createQuery("from Alarm where a_user_id ="+ UserId +"AND a_start_date<=CURDATE() AND a_end_date>=CURDATE() ORDER BY a_recurrence ASC").list();
+  }
 } // class AlarmDao
