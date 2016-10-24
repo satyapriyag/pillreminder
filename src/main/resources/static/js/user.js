@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function(data){
 	var userId= 1;
 	
 	function mapRecurrence(recurrence){
@@ -62,4 +62,39 @@ $(document).on('click', '.glyphicon', function(){
 		});
 		console.log(alternatives);
 	  }
+});
+
+$(document).on('click', '.logout', function($http, $location){
+	console.log("hello");
+//	$.post('logout', {}).success(function() {
+//		console.log(self.authenticated);
+//		self.authenticated = false;
+//		location.reload();
+//		console.log("logout success");
+//	}).error(function(data) {
+//		console.log("Logout failed");
+//		self.authenticated = false;
+//	});
+	$.ajax({
+		url: '/logout',
+	    type: 'POST',
+	    	success: function() {
+		    	console.log('success');
+		    	//location.reload();
+		    }, 
+		    error: function (xhr) {
+		        var jsonResponse = JSON.parse(xhr.responseText);
+		        $(".alert").html(jsonResponse.message);
+		      }
+	});
+	
+});
+
+
+$(document).on('click','#admin', function() {
+	window.location.href = '/home';
+});
+
+$(document).on('click', '#user' , function() {
+	window.location.href = '/userHome';
 });

@@ -34,4 +34,5 @@ public class UserModel {
      public void setUserContact(String userContact){
     	 this.userContact = userContact;
      }
+     
 }

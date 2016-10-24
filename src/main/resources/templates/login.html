@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" />
+<link rel="stylesheet" href="/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="/css/pills.css " />
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="/js/user.js"></script>
+<script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/webjars/angularjs/angular.min.js"></script>
+<script type="text/javascript" src="/js/adminHomeController.js"></script>
+</head>
+<body ng-app="app" ng-controller="home as home"
+	style="background-color: #666">
+	<div class="jumbotron vertical-center" ng-show="!home.authenticated">
+		<div class="container text-center">
+			<a class="btn btn-large btn-info loginBtn loginBtn--google"
+				href="/login">Login with Google</a>
+		</div>
+	</div>
+	<div class="container" ng-show="home.authenticated">
+
+<!-- 		<div> -->
+<!-- 			<button style="float: right" ng-click="home.logout()" -->
+<!-- 				class="btn btn-danger">Logout</button> -->
+<!-- 		</div> -->
+		<div id="adminDiv" ng-show="home.role1">
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#">PILL REMINDER</a>
+					</div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/home">Categories</a></li>
+						<li><a href="/pillsHome">Pills</a></li>
+					</ul>
+					<button type="button" ng-click="home.logout()" class="btn btn-default navbar-btn navbar-right">Sign out</button>
+					<p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link"><i><span ng-bind="home.user.userEmail"></span></i></a></p>				
+				</div>
+			</nav>
+<!-- 			<button style="float: left" id="admin" ng-show="home.role1" -->
+<!-- 				class="btn btn-primary">Admin</button> -->
+		</div>
+		<div id="userDiv" ng-show="!home.role1">
+					<nav class="navbar navbar-inverse navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#">PILL REMINDER</a>
+					</div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="/userHome">Home</a></li>
+						<li><a href="/alarms">Alarms</a></li>
+					</ul>
+					<button type="button" ng-click="home.logout()" class="btn btn-default navbar-btn navbar-right">Sign out</button>
+					<p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link"><i><span ng-bind="home.user.userEmail"></span></i></a></p>				
+				</div>
+			</nav>
+<!-- 			<button id="user" ng-show="!home.role1" class="btn btn-info">Start -->
+<!-- 				User</button> -->
+		</div>
+<!-- 		<div id="user"></div> -->
+	</div>
+</body>
+</html>

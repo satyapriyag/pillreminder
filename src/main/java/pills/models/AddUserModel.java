@@ -5,6 +5,7 @@ public class AddUserModel {
      private String userName;
      private String userEmail;
      private String userContact;
+     private Integer userRole;
      
      public String getUserName(){
     	 return this.userName;
@@ -25,6 +26,13 @@ public class AddUserModel {
      }
      public void setUserContact(String userContact){
     	 this.userContact = userContact;
+     }
+     
+     public Integer getUserRole(){
+    	 return this.userRole;
+     }
+     public void setUserRole(Integer userRole){
+    	 this.userRole = userRole;
      }
      
 }
