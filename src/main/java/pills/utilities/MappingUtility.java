@@ -17,6 +17,7 @@ import pills.models.AddUserModel;
 import pills.models.AlarmModel;
 import pills.models.CategoryModel;
 import pills.models.PillModel;
+import pills.models.ReminderModel;
 import pills.models.UserAlarmModel;
 import pills.models.UserModel;
 import pills.service.PillService;
@@ -155,6 +156,23 @@ public class MappingUtility {
 		alarm.setAEndDate(alarmModel.getAEndDate());
 		alarm.setARecurrence(alarmModel.getARecurrence());
 		return alarm;
+	}
+	
+	public List<ReminderModel> mapReminders(List<Alarm> alarms) {
+		List<ReminderModel> alarmModels = new ArrayList<>();
+		for (Alarm alarm : alarms) {
+			alarmModels.add(mapReminder(alarm));
+		}
+		return alarmModels;
+	}
+	
+	public ReminderModel mapReminder(Alarm alarm) {
+		ReminderModel alarmModel = new ReminderModel();
+//		String pillname =(alarm.getPill().getPillName());
+		alarmModel.setPillName(alarm.getPill().getPillName());
+		alarmModel.setUserMail(alarm.getUser().getUserEmail());
+		alarmModel.setUserName(alarm.getUser().getUserName());
+		return alarmModel;
 	}
 	
 	public List<UserModel> mapUsers(List<User> users) {

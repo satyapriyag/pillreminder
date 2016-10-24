@@ -11,6 +11,7 @@ import pills.dao.AlarmDao;
 import pills.entity.Alarm;
 import pills.models.AddAlarmModel;
 import pills.models.AlarmModel;
+import pills.models.ReminderModel;
 import pills.models.UserAlarmModel;
 import pills.utilities.MappingUtility;
 
@@ -48,9 +49,9 @@ public class AlarmServiceImpl implements AlarmService{
 		List<Alarm> alarms = alarmDao.getByUserId(userId);
 		return mapUtility.mapAlarmsForUser(alarms);
 	}
-	public List<AlarmModel> getByRecurrence(int interval){
+	public List<ReminderModel> getByRecurrence(int interval){
 		List<Alarm> alarms = alarmDao.getByRecurrence(interval);
-		return mapUtility.mapAlarms(alarms);
+		return mapUtility.mapReminders(alarms);
 	}
 	public List<UserAlarmModel> getForToday(Integer userId){
 		List<Alarm> alarms = alarmDao.getForToday(userId);

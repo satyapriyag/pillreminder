@@ -16,6 +16,7 @@ import inti.ws.spring.exception.client.NotFoundException;
 import pills.entity.Alarm;
 import pills.models.AddAlarmModel;
 import pills.models.AlarmModel;
+import pills.models.ReminderModel;
 import pills.models.UserAlarmModel;
 import pills.service.AlarmService;
 
@@ -85,5 +86,9 @@ public class AlarmController {
 	      alarmService.deleteAlarm(alarm);
 	  }
 
-
+	@RequestMapping(value="/reminders",method = RequestMethod.GET)
+	  @ResponseStatus(HttpStatus.OK)
+	  public List<ReminderModel> view() throws BadRequestException{
+		  return alarmService.getByRecurrence(1);
+	  }
 }

@@ -37,7 +37,7 @@ public class Pill  implements java.io.Serializable {
      private Category category;
      private String pillName;
      private Character deleted;
-     private Set<Alarm> alarms = new HashSet<Alarm>(0);
+    // private Set<Alarm> alarms = new HashSet<Alarm>(0);
      private Set<Alternative> alternativesForPillId = new HashSet<Alternative>(0);
      private Set<Alternative> alternativesForAlternatePillId = new HashSet<Alternative>(0);
 
@@ -53,14 +53,14 @@ public class Pill  implements java.io.Serializable {
         this.category = category;
         this.pillName = pillName;
     }
-    public Pill(Category category, String pillName, Character deleted, Set<Alarm> alarms, Set<Alternative> alternativesForPillId, Set<Alternative> alternativesForAlternatePillId) {
-       this.category = category;
-       this.pillName = pillName;
-       this.deleted = deleted;
-       this.alarms = alarms;
-       this.alternativesForPillId = alternativesForPillId;
-       this.alternativesForAlternatePillId = alternativesForAlternatePillId;
-    }
+//    public Pill(Category category, String pillName, Character deleted, Set<Alarm> alarms, Set<Alternative> alternativesForPillId, Set<Alternative> alternativesForAlternatePillId) {
+//       this.category = category;
+//       this.pillName = pillName;
+//       this.deleted = deleted;
+//       this.alarms = alarms;
+//       this.alternativesForPillId = alternativesForPillId;
+//       this.alternativesForAlternatePillId = alternativesForAlternatePillId;
+//    }
    
      @Id @GeneratedValue(strategy=IDENTITY)
 
@@ -104,14 +104,14 @@ public class Pill  implements java.io.Serializable {
         this.deleted = deleted;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="pill")
-    public Set<Alarm> getAlarms() {
-        return this.alarms;
-    }
-    
-    public void setAlarms(Set<Alarm> alarms) {
-        this.alarms = alarms;
-    }
+//@OneToMany(fetch=FetchType.LAZY, mappedBy="pill")
+//    public Set<Alarm> getAlarms() {
+//        return this.alarms;
+//    }
+//    
+//    public void setAlarms(Set<Alarm> alarms) {
+//        this.alarms = alarms;
+//    }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="pillByPillId")
     public Set<Alternative> getAlternativesForPillId() {

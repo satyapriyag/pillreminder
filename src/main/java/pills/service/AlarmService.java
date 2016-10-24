@@ -8,6 +8,7 @@ import java.util.List;
 import pills.entity.Alarm;
 import pills.models.AddAlarmModel;
 import pills.models.AlarmModel;
+import pills.models.ReminderModel;
 import pills.models.UserAlarmModel;
 
 /**
@@ -21,6 +22,6 @@ public interface AlarmService{
 	public UserAlarmModel viewAlarm(Integer id);
 	public void updateAlarm(AlarmModel alarm);
 	public List<UserAlarmModel> getByUserId(Integer userId);
-	public List<AlarmModel> getByRecurrence(int interval);
+	public List<ReminderModel> getByRecurrence(int interval);
 	public List<UserAlarmModel> getForToday(Integer userId);
 }
