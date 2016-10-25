@@ -57,5 +57,13 @@ public class UserDaoImpl implements UserDao{
     getSession().update(user);
     return;
   }
+  public User getByMail(String mail){
+		Session session = getSession();
+	  	Query q = session.createQuery("from User where user_email = :mail");
+		q.setParameter("mail", mail);
+		User user = (User) q.uniqueResult();
+		Hibernate.initialize(user);
+		return user;
+  }
 
 } // class UserDao

@@ -20,4 +20,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		}
 	}
 
+	public void validateAdmin(Integer id) throws UnauthorizedException{
+	    if(id!=1){
+	    	throw new UnauthorizedException("Admin cannot login to User Portal");
+	    }else
+	    	return;
+	}
+	public void validateUser(Integer id) throws UnauthorizedException{
+	    if(id==1){
+	    	throw new UnauthorizedException("User cannot login to Admin Portal");
+	    }else
+	    	return;
+	}
 }

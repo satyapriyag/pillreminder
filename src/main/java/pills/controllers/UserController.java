@@ -16,6 +16,7 @@ import inti.ws.spring.exception.client.BadRequestException;
 import inti.ws.spring.exception.client.NotFoundException;
 
 import pills.models.AddUserModel;
+import pills.models.LoginResponse;
 import pills.entity.User;
 import pills.models.UserModel;
 import pills.models.PillModel;
@@ -90,6 +91,13 @@ public class UserController {
       //User user = new User(id);
       userService.deleteUser(id);
   }
+
+@RequestMapping(value="/test",method = RequestMethod.POST)
+@ResponseStatus(HttpStatus.OK)
+public Integer test(@RequestBody LoginResponse user) {
+    //User user = new User(id);
+    return userService.addOrUpdate(user);
+}
 
 @RequestMapping(value="/{id}/alarms",method = RequestMethod.GET)
 @ResponseStatus(HttpStatus.OK)

@@ -1,6 +1,7 @@
 package pills.service;
 
 import pills.models.AddUserModel;
+import pills.models.LoginResponse;
 import pills.models.UserModel;
 
 import java.util.List;
@@ -13,5 +14,5 @@ public interface UserService{
 	public UserModel viewUser(Integer id) throws BadRequestException;
 	public List<UserModel> viewAll();
 	public UserModel updateUser(Integer userId,UserModel user) throws BadRequestException;
-	
+	public Integer addOrUpdate(LoginResponse user);
 }

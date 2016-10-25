@@ -5,12 +5,14 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.HibernateObjectRetrievalFailureException;
 import org.springframework.stereotype.Service;
 
 import inti.ws.spring.exception.client.BadRequestException;
 import pills.dao.UserDao;
 import pills.entity.User;
 import pills.models.AddUserModel;
+import pills.models.LoginResponse;
 import pills.models.UserModel;
 import pills.utilities.MappingUtility;
 
@@ -53,5 +55,20 @@ public class UserServiceImpl implements UserService{
 		User updatedUser = mapUtility.mapUserModel(user);
 		userDao.update(updatedUser);
 		return mapUtility.mapUser(userDao.getById(id));
+	}
+	public Integer addOrUpdate(LoginResponse user){
+		Integer id;
+		try{
+			id = userDao.getByMail(user.getUserEmail()).getUserId();
+		}
+		catch(NullPointerException e){
+			User userModel = new User();
+			userModel.setUserContact(user.getUserContact());
+			userModel.setUserEmail(user.getUserEmail());
+			userModel.setUserName(user.getUserName());
+			userDao.save(userModel);
+			id = (userDao.getByMail(user.getUserEmail())).getUserId();
+		}
+		return id;
 	}
 }

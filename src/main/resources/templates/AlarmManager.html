@@ -11,7 +11,8 @@
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/alarmManager.js"></script>
+<!-- 	<script type="text/javascript" src="/js/alarmManager.js"></script> -->
+	<script type="text/javascript" src="/js/user.js"></script>
 	<script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
@@ -19,7 +20,7 @@
 <body style="background-color:#666">
 <nav class="navbar navbar-inverse">  
 <!-- <nav class="navbar navbar-dark bg-primary"> -->
-  <div class="container">
+  <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">PILL REMINDER</a>
     </div>
@@ -27,6 +28,8 @@
       <li ><a href="/userHome">Home</a></li>
       <li class="active"><a href="/alarm">Alarms</a></li> 
     </ul>
+      <button type="button" class="btn btn-default navbar-btn navbar-right logout">Sign out</button>
+<!-- 	  <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link"><i><span ></span></i></a></p> -->
   </div>
 </nav>
 

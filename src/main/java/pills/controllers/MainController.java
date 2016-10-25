@@ -45,30 +45,34 @@ public class MainController extends WebSecurityConfigurerAdapter{
   
   @RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String questionView(HttpSession session) throws UnauthorizedException{
-	  Integer id = authenticationService.validateSession(session);
+	    Integer id = authenticationService.validateSession(session);
+	    authenticationService.validateAdmin(id);
 		return "CategoryManager";
 	}
   
   @RequestMapping(value = "/pillsHome", method = RequestMethod.GET)
 	public String pillView(HttpSession session) throws UnauthorizedException {
 	  Integer id = authenticationService.validateSession(session);
+	  authenticationService.validateAdmin(id);
 	  return "PillsManager";
 	}
   @RequestMapping(value = "/userHome", method = RequestMethod.GET)
 	public String userView(HttpSession session) throws UnauthorizedException {
-	  Integer id = authenticationService.validateSession(session);
-		return "UserHome";
+	   Integer id = authenticationService.validateSession(session);
+	   authenticationService.validateUser(id);
+	   return "UserHome";
 	}
   @RequestMapping(value = "/alarm", method = RequestMethod.GET)
 	public String alarmView(HttpSession session) throws UnauthorizedException {
-	  Integer id = authenticationService.validateSession(session);
+	    Integer id = authenticationService.validateSession(session);
+	    authenticationService.validateUser(id);
 		return "AlarmManager";
 	}
 
 @RequestMapping(value = "/user", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public AddUserModel loginUser(Principal principal, HttpSession session)
+	public LoginResponse loginUser(Principal principal, HttpSession session)
 			throws UnauthorizedException, ForbiddenException, BadRequestException {
 		if (principal == null)
 			throw new ForbiddenException("Access forbiden");
@@ -88,21 +92,22 @@ public class MainController extends WebSecurityConfigurerAdapter{
 			String name = details.get("name");
 
 
-			AddUserModel user = new AddUserModel();
+			LoginResponse user = new LoginResponse();
 			user.setUserEmail(email);
 			user.setUserName(name);
 			
 			if("satyapriya.g@gmail.com".equalsIgnoreCase(email)){
 			session.setAttribute("id",1);
 			user.setUserRole(1);
+			user.setUserId(1);
 			return user;
 			}else{
 			user.setUserRole(2);
 			}
 			
-			UserModel addUser = userService.addUser(user);
-
-			session.setAttribute("id", addUser.getUserId() );
+			Integer id = userService.addOrUpdate(user);
+			user.setUserId(id);
+			session.setAttribute("id",id);
 			return user;
 			
 		} else {

@@ -25,8 +25,8 @@ public class ScheduledTasks {
 
 	@Autowired
 	private MailerService smtpMailSender;
-//	private static final Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
-//  private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+	private static final Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
+  private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 	
 	public void sendMail(String mail, String name, String pill) throws MessagingException {
 			smtpMailSender.send(mail, "PillReminder", "Hi "+name+"!\n Time to take "+pill);
@@ -55,4 +55,9 @@ public class ScheduledTasks {
 			sendMail(reminder.getUserMail(),reminder.getUserName(),reminder.getPillName());    		
     	}
     }
+//        @Scheduled(cron="*/5 * * * * *")
+//        public void reporttest() {
+//            log.info("test The time is now {}", dateFormat.format(new Date()));
+//        }
+   
 }
