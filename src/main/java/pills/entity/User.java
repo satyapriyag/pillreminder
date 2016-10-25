@@ -38,7 +38,7 @@ public class User  implements java.io.Serializable {
      private Character deleted;
      private Role userRole;
      private Set<UserRole> userRoles = new HashSet<UserRole>(0);
-     private Set<Alarm> alarms = new HashSet<Alarm>(0);
+//     private Set<Alarm> alarms = new HashSet<Alarm>(0);
 
     public User() {
     }
@@ -50,12 +50,12 @@ public class User  implements java.io.Serializable {
         this.userName = userName;
         this.userEmail = userEmail;
     }
-    public User(String userName, String userEmail, String userContact, Set<UserRole> userRoles, Set<Alarm> alarms) {
+    public User(String userName, String userEmail, String userContact, Set<UserRole> userRoles){//, Set<Alarm> alarms) {
        this.userName = userName;
        this.userEmail = userEmail;
        this.userContact = userContact;
        this.userRoles = userRoles;
-       this.alarms = alarms;
+//       this.alarms = alarms;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -118,14 +118,14 @@ public class User  implements java.io.Serializable {
         this.userRoles = userRoles;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
-    public Set<Alarm> getAlarms() {
-        return this.alarms;
-    }
-    
-    public void setAlarms(Set<Alarm> alarms) {
-        this.alarms = alarms;
-    }
+//@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
+//    public Set<Alarm> getAlarms() {
+//        return this.alarms;
+//    }
+//    
+//    public void setAlarms(Set<Alarm> alarms) {
+//        this.alarms = alarms;
+//    }
 
 
 

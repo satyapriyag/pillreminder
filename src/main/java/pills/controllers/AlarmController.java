@@ -82,8 +82,7 @@ public class AlarmController {
 	@RequestMapping(value="/{id}",method = RequestMethod.DELETE)
 	  @ResponseStatus(HttpStatus.OK)
 	  public void delete(@PathVariable Integer id) throws NotFoundException,BadRequestException {
-	      Alarm alarm = new Alarm(id);
-	      alarmService.deleteAlarm(alarm);
+	      alarmService.deleteAlarm(id);
 	  }
 
 	@RequestMapping(value="/reminders",method = RequestMethod.GET)

@@ -42,6 +42,7 @@ public class Alarm  implements java.io.Serializable {
      private Date AStartDate;
      private Date AEndDate;
      private int ARecurrence;
+     private Character deleted;
 
     public Alarm() {
     }
@@ -74,6 +75,14 @@ public class Alarm  implements java.io.Serializable {
         this.AId = AId;
     }
 
+    @Column(name="deleted", length=1)
+    public Character getDeleted() {
+        return this.deleted;
+    }
+    
+    public void setDeleted(Character deleted) {
+        this.deleted = deleted;
+    }
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="a_pill_id", nullable=false)
     public Pill getPill() {

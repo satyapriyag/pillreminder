@@ -1,6 +1,11 @@
 $(document).ready(function(data){
 	var userId= 1;
 	
+//	function getName(){
+//		 var firstName= '<%= session.getAttribute("id")%>';
+//		 alert(firstName);
+//		}
+	
 	function mapRecurrence(recurrence){
 		switch(recurrence){
 		case 1: return '9:00';
@@ -64,7 +69,7 @@ $(document).on('click', '.glyphicon', function(){
 	  }
 });
 
-$(document).on('click', '.logout', function($http, $location){
+$(document).on('click', '.logout', function(){
 	console.log("hello");
 //	$.post('logout', {}).success(function() {
 //		console.log(self.authenticated);
@@ -80,6 +85,7 @@ $(document).on('click', '.logout', function($http, $location){
 	    type: 'POST',
 	    	success: function() {
 		    	console.log('success');
+		    	
 		    	//location.reload();
 		    }, 
 		    error: function (xhr) {

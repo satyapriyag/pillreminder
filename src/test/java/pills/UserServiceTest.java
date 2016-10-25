@@ -12,7 +12,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestComponent;
+import org.springframework.orm.hibernate5.HibernateObjectRetrievalFailureException;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import inti.ws.spring.exception.client.BadRequestException;
@@ -22,26 +25,30 @@ import pills.service.UserService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@TestComponent
+@ContextConfiguration(classes={TestDatabaseConfig.class})
 public class UserServiceTest{
 	@Autowired
 	private UserService service;
 	
 	
-	/*@Test
-	@Transactional
+	@Test(expected = HibernateObjectRetrievalFailureException.class)
 	@Rollback(true)
 	public void deleteUserTest() throws BadRequestException {
 
-		/* //Save and Get Test
-		UserModel userModel = service.addUser("Pain Killers");
+		 //Save and Get Test
+		AddUserModel addUser = new AddUserModel();
+		addUser.setUserName("deleteUserTest");
+		addUser.setUserEmail("deleteUser@example.com");
+		addUser.setUserRole(2);
+		addUser.setUserContact("999999999");
+		UserModel userModel = service.addUser(addUser);
 		assertTrue(userModel.getUserId() > 0);
-		UserModel userModel;
-		service.deleteUser(1);
-		userModel = service.viewUser(1);
-		System.out.println(userModel);
-		assertNull(userModel);
 
-	}*/
+		service.deleteUser(userModel.getUserId());
+		userModel = service.viewUser(userModel.getUserId());
+
+	}
 
 	@Test(expected = BadRequestException.class)
 	@Transactional

@@ -1,7 +1,6 @@
 package pills;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -12,35 +11,43 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestComponent;
+import org.springframework.orm.hibernate5.HibernateObjectRetrievalFailureException;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import inti.ws.spring.exception.client.BadRequestException;
+import pills.models.AddPillModel;
 import pills.models.CategoryModel;
+import pills.models.PillModel;
 import pills.service.CategoryService;
+import pills.service.PillService;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@TestComponent
+@ContextConfiguration(classes={TestDatabaseConfig.class})
 public class CategoryServiceTest{
 	@Autowired
 	private CategoryService service;
 	
-	
-	/*@Test
-	@Transactional
+	@Autowired
+	private PillService pillService;
+
+	@Test(expected = HibernateObjectRetrievalFailureException.class)
 	@Rollback(true)
 	public void deleteCategoryTest() throws BadRequestException {
 
-		/* //Save and Get Test
+		//Save and Get Test
 		CategoryModel categoryModel = service.addCategory("Pain Killers");
 		assertTrue(categoryModel.getCategoryId() > 0);
-		CategoryModel categoryModel;
-		service.deleteCategory(1);
-		categoryModel = service.viewCategory(1);
-		System.out.println(categoryModel);
-		assertNull(categoryModel);
 
-	}*/
+		service.deleteCategory(categoryModel.getCategoryId());
+		categoryModel = service.viewCategory(categoryModel.getCategoryId());
+
+	}
 
 	@Test(expected = BadRequestException.class)
 	@Transactional
@@ -55,7 +62,7 @@ public class CategoryServiceTest{
 	public void addCategoryTest() throws BadRequestException {
 
 		// Save and Get Test
-		CategoryModel categoryModel = service.addCategory("Pain Killers");
+		CategoryModel categoryModel = service.addCategory("Anti Biotics");
 
 		assertTrue(categoryModel.getCategoryId() > 0);
 	}
@@ -77,8 +84,6 @@ public class CategoryServiceTest{
 
 
 	@Test
-	@Transactional
-	@Rollback(true)
 	public void getAllCategorysTest() throws BadRequestException {
 		List<CategoryModel> categoryModels = service.viewAll();
 		int size = categoryModels.size();
@@ -90,4 +95,11 @@ public class CategoryServiceTest{
 		categoryModels = service.viewAll();
 		assertEquals(size + 1, categoryModels.size());
 	}
+	
+	@Test
+	public void getOneTest() throws BadRequestException{
+		CategoryModel category = service.viewCategory(1);
+		assertEquals(category.getCategoryName(),"test");
+	}
+	
 }

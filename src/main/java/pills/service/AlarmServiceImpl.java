@@ -30,7 +30,8 @@ public class AlarmServiceImpl implements AlarmService{
 		alarmDao.save(alarm);
 		return mapUtility.mapAlarm(alarm);
 	}
-	public void deleteAlarm(Alarm alarm){
+	public void deleteAlarm(Integer id){
+		Alarm alarm = new Alarm(id);
 		alarmDao.delete(alarm);
 	}
 	public UserAlarmModel viewAlarm(Integer id){

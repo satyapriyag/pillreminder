@@ -32,7 +32,7 @@ public class ScheduledTasks {
 			smtpMailSender.send(mail, "PillReminder", "Hi "+name+"!\n Time to take "+pill);
 			}
 
-    @Scheduled(cron="0 17 3 * * *")
+    @Scheduled(cron="0 0 9 * * *")
     public void mailInMorning() throws MessagingException {
     	List<ReminderModel> reminders= alarmService.getByRecurrence(1);
     	for(ReminderModel reminder: reminders){

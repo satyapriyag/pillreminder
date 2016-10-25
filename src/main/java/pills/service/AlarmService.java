@@ -17,7 +17,7 @@ import pills.models.UserAlarmModel;
  */
 public interface AlarmService{
 	public AlarmModel addAlarm(AddAlarmModel alarm);
-	public void deleteAlarm(Alarm alarm);
+	public void deleteAlarm(Integer id);
 	public List<AlarmModel> viewAll();
 	public UserAlarmModel viewAlarm(Integer id);
 	public void updateAlarm(AlarmModel alarm);

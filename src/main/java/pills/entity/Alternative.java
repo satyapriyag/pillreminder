@@ -34,6 +34,7 @@ public class Alternative  implements java.io.Serializable {
      private Integer altId;
      private Pill pillByPillId;
      private Pill pillByAlternatePillId;
+     private Character deleted;
 
     public Alternative() {
     }
@@ -53,6 +54,15 @@ public class Alternative  implements java.io.Serializable {
     
     public void setAltId(Integer altId) {
         this.altId = altId;
+    }
+    
+    @Column(name="deleted", length=1)
+    public Character getDeleted() {
+        return this.deleted;
+    }
+    
+    public void setDeleted(Character deleted) {
+        this.deleted = deleted;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
