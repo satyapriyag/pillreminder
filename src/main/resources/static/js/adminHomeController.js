@@ -3,7 +3,7 @@ angular.module("app", []).controller("home",
 					console.log("Welcome");
 					var self = this;
 
-					$http.get("/user").success(function(data) {
+					$http.get("user").success(function(data) {
 						console.log("success - " + data);
 						self.user = data;
 						self.authenticated = true;
@@ -23,7 +23,7 @@ angular.module("app", []).controller("home",
 					});
 
 					self.logout = function() {
-						$http.post('/logout', {}).success(function() {
+						$http.post('logout', {}).success(function() {
 							self.authenticated = false;
 							$location.path("/");
 						}).error(function(data) {

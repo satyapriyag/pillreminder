@@ -6,7 +6,7 @@ $(document).ready(function(){
 	
 	
 	$.ajax({
-    	url: '/categories',
+    	url: 'categories',
     	dataType: 'json',
     	success: function(data){
     	
@@ -33,7 +33,7 @@ $(document).on('click', "button.delete", function(){
 	var id= list.attr('id');
 	console.log(id);
 	$.ajax({
-	    url: '/categories/'+id,
+	    url: 'categories/'+id,
 	    type: 'DELETE',
 	    success: function() {
 	    	console.log("success");
@@ -69,7 +69,7 @@ $(document).on('submit', "form.edit_input_box", function(){
 	console.log($(".itembox").val());
 	console.log(id);
 	$.ajax({
-	    url: '/categories/'+id,
+	    url: 'categories/'+id,
 	    type: 'PUT',
 	    dataType: 'json',
 	    data: JSON.stringify( {
@@ -111,7 +111,7 @@ $(document).on('click', '.add', function(){
 		console.log(categoryName);
 		
 		$.ajax({
-		    url: '/categories/',
+		    url: 'categories/',
 		    type: 'POST',
 		    dataType: 'json',
 		    data: JSON.stringify( {

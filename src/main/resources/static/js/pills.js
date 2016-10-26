@@ -9,7 +9,7 @@ $(document).ready(function(){
 		$('#categories').empty();
 
 		$.ajax({
-	    	url: '/categories',
+	    	url: 'categories',
 	    	dataType: 'json',
 	    	success: function(data){
 	    	
@@ -33,7 +33,7 @@ $(document).ready(function(){
 	
 	$(document).on('click', '#goBack', function(){
 		console.log("clicked");
-		window.location.href='/';
+		window.location.href='./';
 	});
 	
 	$(document).on('click','#deleteButton',function(){
@@ -41,7 +41,7 @@ $(document).ready(function(){
 		var id= $("input[name='categories']:checked"). val();
 		console.log(id);
 		$.ajax({
-		    url: '/categories/'+id,
+		    url: 'categories/'+id,
 		    type: 'DELETE',
 		    success: function() {
 		    	$("#categories").load(location.href + " #categories");
@@ -56,7 +56,7 @@ $(document).ready(function(){
 		var id= $("input[name='categories']:checked"). val();
 		localStorage.setItem("id", id);
 			$.ajax({
-				url: '/categories/'+id,
+				url: 'categories/'+id,
 				type: 'GET',
 				dataType: 'json',
 				success: function(data) { 
@@ -78,7 +78,7 @@ $(document).ready(function(){
 			console.log('hello');
 			
 			$.ajax({
-			    url: '/categories/'+id,
+			    url: 'categories/'+id,
 			    type: 'PUT',
 			    dataType: 'json',
 			    data: JSON.stringify( {
@@ -107,7 +107,7 @@ $(document).ready(function(){
 				console.log('hello');
 				
 				$.ajax({
-				    url: '/categories/',
+				    url: 'categories/',
 				    type: 'POST',
 				    dataType: 'json',
 				    data: JSON.stringify( {

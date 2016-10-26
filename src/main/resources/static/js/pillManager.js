@@ -4,7 +4,7 @@ $(document).ready(function(){
 	$('#addPills').hide();
 	$('#editPills').hide();
 	$.ajax({
-    	url: '/categories',
+    	url: 'categories',
     	dataType: 'json',
     	success: function(data){
     	
@@ -27,7 +27,7 @@ $(document).on('change', '#selectCategory', function(){
 	var id = $("#selectCategory option:selected").val();
 	$('#viewPillsList').empty();
 	$.ajax({
-    	url: '/categories/'+id+'/pills',
+    	url: 'categories/'+id+'/pills',
     	dataType: 'json',
     	success: function(data){
     	
@@ -59,7 +59,7 @@ $(document).on('click','#addPillSubmit', function(){
 	console.log('hello');
 	
 	$.ajax({
-	    url: '/pills/',
+	    url: 'pills/',
 	    type: 'POST',
 	    dataType: 'json',
 	    data: JSON.stringify( {
@@ -100,7 +100,7 @@ $(document).on('click','#editPillSubmit', function(){
 	console.log('hello');
 	var id =$("input[name='viewPillsList']:checked").val();
 	$.ajax({
-	    url: '/pills/'+id,
+	    url: 'pills/'+id,
 	    type: 'PATCH',
 	    dataType: 'json',
 	    data: JSON.stringify( {
@@ -126,7 +126,7 @@ $(document).on('click','#deletePill',function(){
 	var category = $("#selectCategory option:selected").val();
 	console.log(id);
 	$.ajax({
-	    url: '/pills/'+id,
+	    url: 'pills/'+id,
 	    type: 'DELETE',
 	    success: function() {
 	    	$("#selectCategory").change();
