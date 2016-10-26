@@ -12,12 +12,12 @@ $(document).ready(function(){
 		}
 	}
 	$.ajax({
-		url: '/user',
+		url: 'user',
 		dataType:'json',
 		success: function(data){
 			userId=data.userId;console.log(userId);
 			$.ajax({
-		    	url: '/users/'+userId+'/today',
+		    	url: 'users/'+userId+'/today',
 		    	dataType: 'json',
 		    	success: function(data){
 		    		$.each(data, function(i, d) {
@@ -29,7 +29,7 @@ $(document).ready(function(){
 			});
 		    
 			$.ajax({
-		    	url: '/users/'+userId+'/alarms',
+		    	url: 'users/'+userId+'/alarms',
 		    	dataType: 'json',
 		    	success: function(data){
 		    		$.each(data, function(i, d) {
@@ -47,10 +47,10 @@ $(document).ready(function(){
 });
 $(document).on('click', '.logout', function(){
 	$.ajax({
-		url: '/logout',
+		url: 'logout',
 	    type: 'POST',
 	    	success: function() {
-		    	window.location.href='/';
+		    	window.location.href='./';
 		    }
 	});
 });
@@ -60,7 +60,7 @@ $(document).on('click', '.glyphicon', function(){
 		var pillId = $(this).parent().val();
 		var alternatives="No alternatives found";
 		$.ajax({
-	    	url: '/pills/'+pillId+'/alternatives',
+	    	url: 'pills/'+pillId+'/alternatives',
 	    	dataType: 'json',
 	    	success: function(data){
 	    		alternatives="";
@@ -74,7 +74,7 @@ $(document).on('click', '.glyphicon', function(){
 	if ($(this).hasClass("glyphicon-plus")) {
 		$(".list-group").hide();
 		$.ajax({
-	    	url: '/categories',
+	    	url: 'categories',
 	    	dataType: 'json',
 	    	success: function(data){
 	    	
@@ -108,7 +108,7 @@ $(document).on('click', "button.delete", function(){
 	var list = $(this).closest("li");
 	var id= list.attr('id');
 	$.ajax({
-	    url: '/alarms/'+id,
+	    url: 'alarms/'+id,
 	    type: 'DELETE'
 	});
 	$(this).closest("li").remove();
@@ -117,7 +117,7 @@ $(document).on('change', '#selectCategory', function(){
 	var id = $("#selectCategory option:selected").val();
 	$('#selectPill').empty();
 	$.ajax({
-    	url: '/categories/'+id+'/pills',
+    	url: 'categories/'+id+'/pills',
     	dataType: 'json',
     	success: function(data){
     		$.each(data, function(i, d) {
@@ -129,7 +129,7 @@ $(document).on('change', '#selectCategory', function(){
 });
 $(document).on('click', '#addAlarmSubmit', function(){
 	$.ajax({
-	    url: '/alarms/',
+	    url: 'alarms/',
 	    type: 'POST',
 	    dataType: 'json',
 	    data: JSON.stringify( {
@@ -150,7 +150,7 @@ $(document).on('click', "button.edit", function(){
 	aid=id;
 	$(".list-group").hide();
 	$.ajax({
-    	url: '/categories',
+    	url: 'categories',
     	dataType: 'json',
     	success: function(data){
     	
@@ -162,7 +162,7 @@ $(document).on('click', "button.edit", function(){
     	}
 	});
 	$.ajax({
-    	url: '/alarms/'+id,
+    	url: 'alarms/'+id,
     	dataType: 'json',
     	success: function(data){
     			$('#selectCategory').find("option[value = '" + data.acategoryId + "']").attr("selected", "selected");
@@ -179,7 +179,7 @@ $(document).on('click', "button.edit", function(){
 });
 $(document).on('click', '#editAlarmSubmit', function(){
 	$.ajax({
-	    url: '/alarms/'+aid,
+	    url: 'alarms/'+aid,
 	    type: 'PATCH',
 	    dataType: 'json',
 	    data: JSON.stringify( {

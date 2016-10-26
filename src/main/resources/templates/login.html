@@ -4,24 +4,24 @@
 <title>Home</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" />
-<link rel="stylesheet" href="/css/jquery.dataTables.min.css" />
-<link rel="stylesheet" href="/css/pills.css " />
+<link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
+<link rel="stylesheet" href="css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="css/pills.css " />
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="/js/user.js"></script>
-<script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/webjars/angularjs/angular.min.js"></script>
-<script type="text/javascript" src="/js/adminHomeController.js"></script>
+<script type="text/javascript" src="js/user.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="webjars/angularjs/angular.min.js"></script>
+<script type="text/javascript" src="js/adminHomeController.js"></script>
 </head>
 <body ng-app="app" ng-controller="home as home"
 	style="background-color: #666">
 	<div class="jumbotron vertical-center" ng-show="!home.authenticated">
 		<div class="container text-center">
 			<a class="btn btn-large btn-info loginBtn loginBtn--google"
-				href="/login">Login with Google</a>
+				href="login">Login with Google</a>
 		</div>
 	</div>
 	<div class="container" ng-show="home.authenticated">
@@ -38,7 +38,7 @@
 					</div>
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="/home">Categories</a></li>
-						<li><a href="/pillsHome">Pills</a></li>
+						<li><a href="pillsHome">Pills</a></li>
 					</ul>
 					<button type="button" ng-click="home.logout()" class="btn btn-default navbar-btn navbar-right">Sign out</button>
 					<p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link"><i><span ng-bind="home.user.userEmail"></span></i></a></p>				
@@ -55,7 +55,7 @@
 					</div>
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="/userHome">Home</a></li>
-						<li><a href="/alarm">Alarms</a></li>
+						<li><a href="alarm">Alarms</a></li>
 					</ul>
 					<button type="button" ng-click="home.logout()" class="btn btn-default navbar-btn navbar-right">Sign out</button>
 					<p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link"><i><span ng-bind="home.user.userEmail"></span></i></a></p>				
