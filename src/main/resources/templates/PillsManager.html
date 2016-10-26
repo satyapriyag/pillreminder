@@ -1,102 +1,45 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head> 
-    <title>Pills</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+<title>Pills</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-	<link rel="stylesheet" href="/css/bootstrap.min.css" media="screen"/>
-	<link rel="stylesheet" href="/css/jquery.dataTables.min.css" />
-	<link rel="stylesheet" href="/css/pills.css " />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/pillManager.js"></script>
-	<script type="text/javascript" src="/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
+<link rel="stylesheet" href="css/pills.css " />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/admin.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
-<body style="background-color:#666">
-<nav class="navbar navbar-inverse">  
-<!-- <nav class="navbar navbar-dark bg-primary"> -->
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">PILL REMINDER</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li ><a href="/home">Categories</a></li> 
-      <li class="active"><a href="/pillsHome">Pills</a></li>
-    </ul>
-  </div>
-</nav>
-<div class="container">
-					    <div class="modal-header ">
-							<h4 class="modal-title">Pill Manager</h4>
-						</div>
-					<form enctype="multipart/form-data"  style="background-color:#D3D3D3">
-					<div class="form-group" style="background-color:#D3D3D3;">
-				      <label class="col-lg-3 control-label" for="category">Category</label>
-				      <div class="col-lg-9">
-				      <select  class="form-control" id="selectCategory" name="categoryId">
-				      <option value="0">--Select a category to view pills--  </option>
-				      </select>
-				      </div>
-				      </div>
-				      </form>
-				    <div  style="background-color:#D3D3D3" id="viewPills">
-				    <div class="modal-header ">
-							<h5 class="modal-title">Pills in this category</h5>
-						</div>
-					<div class="form-group" style="background-color:#D3D3D3;" >
-
-				      <div >
-				      <button class="btn btn-primary" id="addPillButton">Add </button>
-          			  <button class="btn btn-primary" id="editPill">Edit</button>
-          			  <button class="btn btn-primary" id="deletePill">Delete</button>
-          			  </div>
-          			  	<div id="viewPillsList"  >	
-          			  	</div>
-				      </div></div>
-				      <form enctype="multipart/form-data" class="col-md-9" style="background-color:#D3D3D3" id="addPills">
-				    <div class="modal-header ">
-							<h5 class="modal-title">Add a Pill to this category</h5>
-						</div>
-<!-- 		  		<form enctype="multipart/form-data" id="AddPillForm" > -->
-
-            		<div class="form-group"  style="background-color:#D3D3D3">
-	                    <label class="col-lg-3">Pill Name</label>
-	                    <div class="col-lg-9">
-	                    	<input type="text" class="form-control" id="addPillName" name="addPillName" />
-	                    	 <button id="addPillSubmit" class="btn btn-primary" name="button">Save</button>
-	                    </div>
-                	</div>           		
-
-<!--                </form> -->
-  
-</form>
-		  
-
-		  		<form enctype="multipart/form-data" class="col-md-9" style="background-color:#D3D3D3" id="editPills">
-				    <div class="modal-header ">
-							<h5 class="modal-title">Edit this Pill</h5>
-						</div>
-
-            		<div class="form-group" style="background-color:#D3D3D3">
-	                    <label class="col-lg-3">Pill Name</label>
-	                    <div class="col-lg-9">
-	                    	<input type="text" class="form-control" id="editPillName" name="editPillName" />
-	                    </div>
-	                    <label class="col-lg-3">Category</label>
-	                    <div class="col-lg-9">
-	                    <select class="form-control" id="editCategory" name="editCategoryId"></select>
-	                    </div>
-	                    <button id="editPillSubmit" class="btn btn-primary" name="button">Save</button>
-	                    
-                	</div>           		
-
-               </form>
-  
-		  </div>
-
-				      
-
-
-
+<body style="background-color: #666">
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">PILL REMINDER</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="home">Categories</a></li>
+				<li class="active"><a href="pillsManager">Pills</a></li>
+			</ul>
+			<button type="button"
+				class="btn btn-default navbar-btn navbar-right logout">Sign
+				out</button>
+		</div>
+	</nav>
+	<div class="container ">
+		<div class="col-md-9">
+			<div class="list-group">
+				<ul id="viewPills">
+					<li class="list-group-item active">Pill Manager</li>
+					<!--         <span class="pull-right glyphicon glyphicon-plus"><label>Add Category</label></span> -->
+					<li class="list-group-item"><select id="selectCategory"
+						name="categoryId"><option value="0">--Select a
+								category to view pills--</option></select><span
+						class="addPillPlus pull-right glyphicon glyphicon-plus"><label>Pill</label></span></li>
+				</ul>
+				<ul id="viewPillsList"></ul>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
-

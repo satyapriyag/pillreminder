@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,41 +15,55 @@ import pills.models.CategoryModel;
 import pills.utilities.MappingUtility;
 
 @Service
-@Transactional
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
+
+	private static final Logger LOG = Logger.getLogger(AuthenticationServiceImpl.class);
 	
 	@Autowired
 	private MappingUtility mapUtility;
-	
+
 	@Autowired
 	private CategoryDao categoryDao;
-	
-	public CategoryModel addCategory(String categoryName) throws BadRequestException{
+
+	@Transactional
+	public CategoryModel addCategory(String categoryName) throws BadRequestException {
 		if (categoryName == null || categoryName.equals(""))
 			throw new BadRequestException("Required parameters are either missing or invalid");
-		Category category= new Category(categoryName);
+		Category category = new Category(categoryName);
 		categoryDao.save(category);
+		LOG.info("Category is added");
 		return mapUtility.mapCategory(category);
 	}
-	public void deleteCategory(Integer id) throws BadRequestException{
+
+	@Transactional
+	public void deleteCategory(Integer id) throws BadRequestException {
 		if (id <= 0)
 			throw new BadRequestException("Required parameters are either missing or invalid");
 		Category category = new Category(id);
 		categoryDao.delete(category);
+		LOG.info("Category is deleted");
 	}
-	public CategoryModel viewCategory(Integer id) throws BadRequestException{
-		if (id <= 0)
+
+	@Transactional
+	public CategoryModel viewCategory(Integer id) throws BadRequestException {
+		if (id < 0)
 			throw new BadRequestException("Required parameters are either missing or invalid");
 		return mapUtility.mapCategory(categoryDao.getById(id));
 	}
-	public List<CategoryModel> viewAll(){
+
+	@Transactional
+	public List<CategoryModel> viewAll() {
 		return mapUtility.mapCategories(categoryDao.getAll());
 	}
-	public CategoryModel updateCategory(Integer id,CategoryModel category) throws BadRequestException{
-		if (category.getCategoryId() <= 0 || category.getCategoryName()==null || category.getCategoryName().equals(""))
+
+	@Transactional
+	public CategoryModel updateCategory(Integer id, CategoryModel category) throws BadRequestException {
+		if (category.getCategoryId() <= 0 || category.getCategoryName() == null
+				|| category.getCategoryName().equals(""))
 			throw new BadRequestException("Required parameters are either missing or invalid");
 		Category updatedCategory = mapUtility.mapCategoryModel(category);
 		categoryDao.update(updatedCategory);
+		LOG.info("Category is updtaed");
 		return mapUtility.mapCategory(categoryDao.getById(id));
 	}
 }

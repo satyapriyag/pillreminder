@@ -21,6 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import inti.ws.spring.exception.client.BadRequestException;
 import pills.models.AddAlarmModel;
 import pills.models.AlarmModel;
+import pills.models.ReminderModel;
 import pills.models.UserAlarmModel;
 import pills.service.AlarmService;
 
@@ -93,14 +94,14 @@ public class AlarmServiceTest{
 	
 
 
-//	@Test(expected = BadRequestException.class)
-//	@Transactional
-//	@Rollback(true)
-//	public void deleteAlarmInvalidId() throws BadRequestException {
-//		alarmService.deleteAlarm(-1);
-//	}
-//
-//
+	@Test(expected = BadRequestException.class)
+	@Transactional
+	@Rollback(true)
+	public void deleteAlarmInvalidId() throws BadRequestException {
+		alarmService.deleteAlarm(-1);
+	}
+
+
 	@Test
 	public void updateAlarmRecurrenceTest() throws BadRequestException {
 
@@ -132,5 +133,19 @@ public class AlarmServiceTest{
 		assertEquals(Integer.valueOf(ualarmModel.getAPillId()),Integer.valueOf(4));
 	}
 	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void getByRecurrenceTest() throws BadRequestException{
+		List<ReminderModel> recurence = alarmService.getByRecurrence(3);
+		assertEquals(recurence.size(),2);
+	}
 
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void getByUserIdTest() throws BadRequestException{
+		List<UserAlarmModel> user = alarmService.getByUserId(2);
+		assertEquals(user.size(),1);
+	}
 }

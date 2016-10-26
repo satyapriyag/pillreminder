@@ -54,7 +54,7 @@ $(document).on('click', '.logout', function(){
 		    }
 	});
 });
-$(document).on('click', '.glyphicon', function(){
+$(document).on('mouseover', '.glyphicon-question-sign', function(){
 
 	if ($(this).hasClass("glyphicon-question-sign")) {
 		var pillId = $(this).parent().val();
@@ -69,8 +69,11 @@ $(document).on('click', '.glyphicon', function(){
 	    			});		
 	    	}
 		});
-		$(this).popover({title: "Alternative Pills", content: " "+alternatives,});
+		$(this).popover({trigger: "hover",maxWidth: "600px",title: "Alternative Pills", content: " "+alternatives,});
 	  }
+});
+$(document).on('click', '.glyphicon', function(){
+
 	if ($(this).hasClass("glyphicon-plus")) {
 		$(".list-group").hide();
 		$.ajax({

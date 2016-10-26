@@ -120,5 +120,11 @@ public class PillServiceTest{
 		assertEquals(pillModel.getPillCategoryId(),(Integer)3);
 	}
 	
-
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void getPillsForCategoryTest() throws BadRequestException{
+		List<PillModel>getPills = pillService.getPillsForCategory(1);
+		assertEquals(getPills.size(),4);
+	}
 }

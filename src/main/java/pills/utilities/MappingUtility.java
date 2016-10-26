@@ -28,6 +28,11 @@ public class MappingUtility {
 	@Autowired
 	PillService service ;
 	
+	/**
+	 * Converts list of Category to list of CategoryModel
+	 * @param categories
+	 * @return CategoryModel
+	 */
 	public List<CategoryModel> mapCategories(List<Category> categories) {
 		List<CategoryModel> categoryModels = new ArrayList<>();
 		for (Category category : categories) {
@@ -36,6 +41,11 @@ public class MappingUtility {
 		return categoryModels;
 	}
 	
+	/**
+	 * 
+	 * @param category
+	 * @return
+	 */
 	public CategoryModel mapCategory(Category category) {
 		CategoryModel categoryModel = new CategoryModel();
 		categoryModel.setCategoryId(category.getCategoryId());
@@ -43,6 +53,11 @@ public class MappingUtility {
 		return categoryModel;
 	}
 	
+	/**
+	 * 
+	 * @param categoryModel
+	 * @return
+	 */
 	public Category mapCategoryModel(CategoryModel categoryModel){
 		Category category = new Category();
 		category.setCategoryId(categoryModel.getCategoryId());
@@ -50,6 +65,11 @@ public class MappingUtility {
 		return category;
 	}
 	
+	/**
+	 * 
+	 * @param alternatives
+	 * @return
+	 */
 	public List<PillModel> mapAlternatives(List<Alternative> alternatives){
 		List<PillModel> pills = new ArrayList<>();
 		for(Alternative alternative:alternatives){
@@ -60,6 +80,12 @@ public class MappingUtility {
 		return pills;
 		
 	}
+	
+	/**
+	 * 
+	 * @param pills
+	 * @return
+	 */
 	public List<PillModel> mapPills(List<Pill> pills) {
 		List<PillModel> pillModels = new ArrayList<>();
 		for (Pill pill : pills) {
@@ -68,6 +94,11 @@ public class MappingUtility {
 		return pillModels;
 	}
 	
+	/**
+	 * 
+	 * @param pill
+	 * @return
+	 */
 	public PillModel mapPill(Pill pill) {
 		PillModel pillModel = new PillModel();
 		pillModel.setPillId(pill.getPillId());
@@ -75,7 +106,11 @@ public class MappingUtility {
 		pillModel.setPillCategoryId(pill.getCategory().getCategoryId());
 		return pillModel;
 	}
-	
+	/**
+	 * 
+	 * @param pillModel
+	 * @return
+	 */
 	public Pill mapPillModel(PillModel pillModel){
 		Pill pill = new Pill();
 		pill.setPillId(pillModel.getPillId());
@@ -84,12 +119,22 @@ public class MappingUtility {
 		return pill;
 	}
 	
+	/**
+	 * 
+	 * @param pillModel
+	 * @return
+	 */
 	public Pill mapAddPillModel(AddPillModel pillModel){
 		Pill pill = new Pill();
 		pill.setPillName(pillModel.getPillName());
 		pill.setCategory(new Category(pillModel.getPillCategoryId()));
 		return pill;
 	}
+	/**
+	 * 
+	 * @param alarms
+	 * @return
+	 */
 	public List<AlarmModel> mapAlarms(List<Alarm> alarms) {
 		List<AlarmModel> alarmModels = new ArrayList<>();
 		for (Alarm alarm : alarms) {
@@ -98,6 +143,11 @@ public class MappingUtility {
 		return alarmModels;
 	}
 	
+	/**
+	 * 
+	 * @param alarm
+	 * @return
+	 */
 	public AlarmModel mapAlarm(Alarm alarm) {
 		AlarmModel alarmModel = new AlarmModel();
 		alarmModel.setAId(alarm.getAId());
@@ -109,6 +159,11 @@ public class MappingUtility {
 		return alarmModel;
 	}
 	
+	/**
+	 * 
+	 * @param alarms
+	 * @return
+	 */
 	public List<UserAlarmModel> mapAlarmsForUser(List<Alarm> alarms) {
 		List<UserAlarmModel> alarmModels = new ArrayList<>();
 		for (Alarm alarm : alarms) {
@@ -117,6 +172,11 @@ public class MappingUtility {
 		return alarmModels;
 	}
 	
+	/**
+	 * 
+	 * @param alarm
+	 * @return
+	 */
 	public UserAlarmModel mapAlarmForUser(Alarm alarm) {
 		UserAlarmModel alarmModel = new UserAlarmModel();
 		alarmModel.setAId(alarm.getAId());
@@ -130,6 +190,11 @@ public class MappingUtility {
 		return alarmModel;
 	}
 	
+	/**
+	 * 
+	 * @param alarmModel
+	 * @return
+	 */
 	public Alarm mapAlarmModel(AlarmModel alarmModel){
 		Alarm alarm = new Alarm();
 		alarm.setAId(alarmModel.getAId());
@@ -141,14 +206,14 @@ public class MappingUtility {
 		return alarm;
 	}
 	
+	/**
+	 * 
+	 * @param alarmModel
+	 * @return
+	 */
 	public Alarm mapAddAlarmModel(AddAlarmModel alarmModel){
 		Alarm alarm = new Alarm();
 		System.out.println(alarmModel.getAPillId());
-		/*PillModel pillModel = service.viewPill(alarmModel.getPillId());//new Pill(alarmModel.getPillId());
-		Pill pill = new Pill();
-		pill.setPillName(pillModel.getPillName());
-		pill.setCategory(new Category(pillModel.getPillCategoryId()));
-		System.out.println(pill.getPillName()+" "+alarmModel.getPillId());*/
 		alarm.setUser(new User(alarmModel.getAUserId()));
 		alarm.setPill(new Pill(alarmModel.getAPillId()));
 		
@@ -158,6 +223,11 @@ public class MappingUtility {
 		return alarm;
 	}
 	
+	/**
+	 * 
+	 * @param alarms
+	 * @return
+	 */
 	public List<ReminderModel> mapReminders(List<Alarm> alarms) {
 		List<ReminderModel> alarmModels = new ArrayList<>();
 		for (Alarm alarm : alarms) {
@@ -166,6 +236,11 @@ public class MappingUtility {
 		return alarmModels;
 	}
 	
+	/**
+	 * 
+	 * @param alarm
+	 * @return
+	 */
 	public ReminderModel mapReminder(Alarm alarm) {
 		ReminderModel alarmModel = new ReminderModel();
 //		String pillname =(alarm.getPill().getPillName());
@@ -175,6 +250,11 @@ public class MappingUtility {
 		return alarmModel;
 	}
 	
+	/**
+	 * 
+	 * @param users
+	 * @return
+	 */
 	public List<UserModel> mapUsers(List<User> users) {
 		List<UserModel> userModels = new ArrayList<>();
 		for (User user : users) {
@@ -183,6 +263,11 @@ public class MappingUtility {
 		return userModels;
 	}
 	
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
 	public UserModel mapUser(User user) {
 		UserModel userModel = new UserModel();
 		userModel.setUserId(user.getUserId());
@@ -192,6 +277,11 @@ public class MappingUtility {
 		return userModel;
 	}
 	
+	/**
+	 * 
+	 * @param userModel
+	 * @return
+	 */
 	public User mapUserModel(UserModel userModel){
 		User user = new User();
 		user.setUserId(userModel.getUserId());
@@ -201,6 +291,11 @@ public class MappingUtility {
 		return user;
 	}
 	
+	/**
+	 * 
+	 * @param userModel
+	 * @return
+	 */
 	public User mapAddUserModel(AddUserModel userModel){
 		User user = new User();
 		user.setUserName(userModel.getUserName());

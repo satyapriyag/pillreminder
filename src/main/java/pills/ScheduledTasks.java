@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import inti.ws.spring.exception.client.BadRequestException;
 import pills.models.ReminderModel;
 import pills.service.AlarmService;
 import pills.service.MailerService;
@@ -26,14 +27,14 @@ public class ScheduledTasks {
 	@Autowired
 	private MailerService smtpMailSender;
 	private static final Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
-  private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 	
 	public void sendMail(String mail, String name, String pill) throws MessagingException {
 			smtpMailSender.send(mail, "PillReminder", "Hi "+name+"!\n Time to take "+pill);
 			}
 
     @Scheduled(cron="0 0 9 * * *")
-    public void mailInMorning() throws MessagingException {
+    public void mailInMorning() throws MessagingException, BadRequestException {
     	List<ReminderModel> reminders= alarmService.getByRecurrence(1);
     	for(ReminderModel reminder: reminders){
 			sendMail(reminder.getUserMail(),reminder.getUserName(),reminder.getPillName());    		
@@ -41,7 +42,7 @@ public class ScheduledTasks {
 //        log.info("The time is now {}", dateFormat.format(new Date()));
     }
     @Scheduled(cron="0 0 13 * * *")
-    public void mailInAfternoon() throws MessagingException {
+    public void mailInAfternoon() throws MessagingException, BadRequestException {
     	List<ReminderModel> reminders= alarmService.getByRecurrence(2);
     	for(ReminderModel reminder: reminders){
 			sendMail(reminder.getUserMail(),reminder.getUserName(),reminder.getPillName());    		
@@ -49,7 +50,7 @@ public class ScheduledTasks {
     }
     
     @Scheduled(cron="0 0 19 * * *")
-    public void mailInEvening() throws MessagingException {
+    public void mailInEvening() throws MessagingException, BadRequestException {
     	List<ReminderModel> reminders= alarmService.getByRecurrence(3);
     	for(ReminderModel reminder: reminders){
 			sendMail(reminder.getUserMail(),reminder.getUserName(),reminder.getPillName());    		

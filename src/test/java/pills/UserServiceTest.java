@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import inti.ws.spring.exception.client.BadRequestException;
 import pills.models.AddUserModel;
+import pills.models.LoginResponse;
 import pills.models.UserModel;
 import pills.service.UserService;
 
@@ -137,5 +138,17 @@ public class UserServiceTest{
 
 		userModels = service.viewAll();
 		assertEquals(size + 1, userModels.size());
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void addOrUpdateTest() {
+		LoginResponse user = new LoginResponse();
+		user.setUserEmail("test@test.com");
+		user.setUserName("test");
+		user.setUserRole(2);
+		Integer id = service.addOrUpdate(user);
+		assertEquals(Integer.valueOf(id),Integer.valueOf(1));
 	}
 }

@@ -29,7 +29,7 @@ public class AlarmController {
 	  
 
 	  /**
-	 * @return
+	 * @return List of AlarmModel
 	 * @throws BadRequestException
 	 */
 	@RequestMapping(method = RequestMethod.GET)
@@ -40,7 +40,7 @@ public class AlarmController {
 	  
 	  /**
 	 * @param alarm
-	 * @return
+	 * @return AlarmModel
 	 * @throws BadRequestException
 	 */
 	@RequestMapping(method = RequestMethod.POST)
@@ -53,18 +53,19 @@ public class AlarmController {
 	  
 	  /**
 	 * @param id
-	 * @return
+	 * @return UserAlarmModel
 	 * @throws NotFoundException
+	 * @throws BadRequestException 
 	 */
 	@RequestMapping(value="/{id}",method = RequestMethod.GET)
 	  @ResponseStatus(HttpStatus.OK)
-	  public UserAlarmModel view(@PathVariable Integer id) throws NotFoundException{
+	  public UserAlarmModel view(@PathVariable Integer id) throws NotFoundException, BadRequestException{
 		 return alarmService.viewAlarm(id);
 	  }
 	  
 	  /**
 	 * @param alarm
-	 * @return
+	 * @return AlarmModel
 	 * @throws BadRequestException
 	 */
 	@RequestMapping(value="/{id}",method = RequestMethod.PATCH)
@@ -85,6 +86,11 @@ public class AlarmController {
 	      alarmService.deleteAlarm(id);
 	  }
 
+	/**
+	 * 
+	 * @return List of ReminderModel
+	 * @throws BadRequestException
+	 */
 	@RequestMapping(value="/reminders",method = RequestMethod.GET)
 	  @ResponseStatus(HttpStatus.OK)
 	  public List<ReminderModel> view() throws BadRequestException{

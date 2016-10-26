@@ -9,10 +9,10 @@ import java.util.List;
 import inti.ws.spring.exception.client.BadRequestException;
 
 public interface PillService{
-	public PillModel addPill(AddPillModel pill);
+	public PillModel addPill(AddPillModel pill) throws BadRequestException;
 	public void deletePill(Integer id) throws BadRequestException;
-	public PillModel viewPill(Integer id);
-	public List<PillModel> viewAll();
+	public PillModel viewPill(Integer id) throws BadRequestException;
+	public List<PillModel> viewAll() ;
 	public void updatePill(PillModel pill);
-	public List<PillModel> getPillsForCategory(Integer categoryId);
+	public List<PillModel> getPillsForCategory(Integer categoryId) throws BadRequestException;
 }

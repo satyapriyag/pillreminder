@@ -1,98 +1,110 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head> 
-    <title>Home</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+<title>Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-	<link rel="stylesheet" href="css/bootstrap.min.css" media="screen"/>
-	<link rel="stylesheet" href="css/jquery.dataTables.min.css" />
-	<link rel="stylesheet" href="css/pills.css " />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css" media="screen" />
+<link rel="stylesheet" href="css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="css/pills.css " />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- 	<script type="text/javascript" src="/js/alarmManager.js"></script> -->
-	<script type="text/javascript" src="js/user.js"></script>
-	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="js/user.js"></script>
+<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 </head>
-<body style="background-color:#666">
-<nav class="navbar navbar-inverse">  
-<!-- <nav class="navbar navbar-dark bg-primary"> -->
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">PILL REMINDER</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li ><a href="/userHome">Home</a></li>
-      <li class="active"><a href="/alarm">Alarms</a></li> 
-    </ul>
-      <button type="button" class="btn btn-default navbar-btn navbar-right logout">Sign out</button>
-<!-- 	  <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link"><i><span ></span></i></a></p> -->
-  </div>
-</nav>
+<body style="background-color: #666">
+	<nav class="navbar navbar-inverse">
+		<!-- <nav class="navbar navbar-dark bg-primary"> -->
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">PILL REMINDER</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="userHome">Home</a></li>
+				<li class="active"><a href="alarmManager">Alarms</a></li>
+			</ul>
+			<button type="button"
+				class="btn btn-default navbar-btn navbar-right logout">Sign
+				out</button>
+			<!-- 	  <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link"><i><span ></span></i></a></p> -->
+		</div>
+	</nav>
 
 
-    <div class="container">
+	<div class="container">
 
-<form enctype="multipart/form-data" class="col-md-9" style="background-color:#D3D3D3" id="addAlarm">
-    					<div class="modal-header ">
-							<h4 class="modal-title">Add a new Alarm</h4>
-						</div><br/>
-<div class="form-group" style="background-color:#D3D3D3">						
-<select class="form-control" id="selectCategory" name="categoryId">
-<option value="0">--Select a category to view pills--  </option>
-</select><br/>
-<select class="form-control" id="selectPill" name="pillId">
-<option value="0">--Select a pill--  </option>
-</select><br/>
+		<form enctype="multipart/form-data" class="col-md-9"
+			style="background-color: #D3D3D3" id="addAlarm">
+			<div class="modal-header ">
+				<h4 class="modal-title">Add a new Alarm</h4>
+			</div>
+			<br />
+			<div class="form-group" style="background-color: #D3D3D3">
+				<select class="form-control" id="selectCategory" name="categoryId">
+					<option value="0">--Select a category to view pills--</option>
+				</select><br /> <select class="form-control" id="selectPill" name="pillId">
+					<option value="0">--Select a pill--</option>
+				</select><br /> <select class="form-control" id="selectRecurrence"
+					name="recurrence">
+					<option value="0">--Select a time--</option>
+					<option value="1">9:00 HRS</option>
+					<option value="2">1:00 HRS</option>
+					<option value="3">7:00 HRS</option>
 
-<select class="form-control" id="selectRecurrence" name="recurrence" >
-<option value="0">--Select a time--  </option>
-<option value="1">9:00 HRS  </option>
-<option value="2">1:00 HRS </option>
-<option value="3">7:00 HRS</option>
+				</select><br />
+				<div class='col-md-6 row '>
+					<!--         <div class="form-group"> -->
+					<div class='input-group date' id='datetimepicker6'>
+						<input type='text' name="startDate" id="startDate"
+							class="form-control" placeholder="Start Date" /> <span
+							class="input-group-addon"> <span
+							class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
+					<!--         </div> -->
+				</div>
+				<div class='col-md-6 '>
+					<!--         <div class="form-group"> -->
+					<div class='input-group date' id='datetimepicker7'>
+						<input type='text' name="endDate" id="endDate"
+							class="form-control pull-right" placeholder="End Date" /> <span
+							class="input-group-addon"> <span
+							class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
+					<!--         </div> -->
+				</div>
+			</div>
+			<br />
+			<input type="submit" id="addAlarmSubmit" value="Add"
+				class="btn btn-primary add_button" />
 
-</select><br/>
-    <div class='col-md-6 row '>
-<!--         <div class="form-group"> -->
-            <div class='input-group date' id='datetimepicker6'>
-                <input type='text' name ="startDate" id="startDate" class="form-control" placeholder="Start Date"/>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-<!--         </div> -->
-    </div>
-    <div class='col-md-6 '>
-<!--         <div class="form-group"> -->
-            <div class='input-group date' id='datetimepicker7'>
-                <input type='text' name ="endDate" id="endDate" class="form-control pull-right" placeholder="End Date" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-<!--         </div> -->
-    </div>
-</div>
-<br/><input type="submit" id="addAlarmSubmit" value="Add" class="btn btn-primary add_button"/>
+		</form>
+	</div>
+	<div class="container">
+		<div class="col-md-9">
+			<div class="list-group">
+				<ul id="viewAlarms">
+					<li class="list-group-item active">Alarms<span
+						class="pull-right glyphicon glyphicon-plus"><label>Add
+								alarm</label></span></li>
+					<!--         <li class="list-group-item active">Alarms<input type="submit" value="Add" class="btn btn-danger add_button"/></li> -->
+					<!--         <li class="list-group-item">Gardening<span class="pull-right bigger blue2 glyphicon glyphicon-question-sign"></span> </li> -->
 
-</form>
-</div>
-<div class="container">
-   <div class="col-md-9">
-      <div class="list-group" >
-      <ul id="viewAlarms" >
-              <li class="list-group-item active">Alarms<span class="pull-right glyphicon glyphicon-plus"><label>Add alarm</label></span></li>
-<!--         <li class="list-group-item active">Alarms<input type="submit" value="Add" class="btn btn-danger add_button"/></li> -->
-<!--         <li class="list-group-item">Gardening<span class="pull-right bigger blue2 glyphicon glyphicon-question-sign"></span> </li> -->
+				</ul>
+			</div>
+		</div>
 
-      </ul>
-      </div>
-   </div>
-
-</div>
+	</div>
 
 
 </body>

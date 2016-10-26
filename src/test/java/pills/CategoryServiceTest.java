@@ -16,6 +16,7 @@ import org.springframework.orm.hibernate5.HibernateObjectRetrievalFailureExcepti
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.hibernate.ObjectNotFoundException;
 
 import inti.ws.spring.exception.client.BadRequestException;
 import pills.models.AddPillModel;
@@ -36,7 +37,8 @@ public class CategoryServiceTest{
 	@Autowired
 	private PillService pillService;
 
-	@Test(expected = HibernateObjectRetrievalFailureException.class)
+	//@Test(expected = HibernateObjectRetrievalFailureException.class)
+	@Test(expected = ObjectNotFoundException.class)
 	@Rollback(true)
 	public void deleteCategoryTest() throws BadRequestException {
 
