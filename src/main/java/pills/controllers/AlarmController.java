@@ -20,79 +20,82 @@ import pills.models.UserAlarmModel;
 import pills.service.AlarmService;
 
 @RestController
-@RequestMapping(value="/alarms")
+@RequestMapping(value = "/alarms")
 public class AlarmController {
 
-	  @Autowired
-	  private AlarmService alarmService;
-	  
+  @Autowired
+  private AlarmService alarmService;
 
-	  /**
-	 * @return List of AlarmModel
-	 * @throws BadRequestException
-	 */
-	@RequestMapping(method = RequestMethod.GET)
-	  @ResponseStatus(HttpStatus.OK)
-	  public List<AlarmModel> viewAll() throws BadRequestException{
-		  return alarmService.viewAll();
-	  }
-	  
-	  /**
-	 * @param alarm
-	 * @return AlarmModel
-	 * @throws BadRequestException
-	 */
-	@RequestMapping(method = RequestMethod.POST)
-	  @ResponseStatus(HttpStatus.CREATED)
-	  public AlarmModel create(@RequestBody AddAlarmModel alarm) throws BadRequestException {
-		System.out.println(alarm.getAPillId()+""+alarm.getARecurrence());
-		//return null;
-	   return alarmService.addAlarm(alarm);
-	  }
-	  
-	  /**
-	 * @param id
-	 * @return UserAlarmModel
-	 * @throws NotFoundException
-	 * @throws BadRequestException 
-	 */
-	@RequestMapping(value="/{id}",method = RequestMethod.GET)
-	  @ResponseStatus(HttpStatus.OK)
-	  public UserAlarmModel view(@PathVariable Integer id) throws NotFoundException, BadRequestException{
-		 return alarmService.viewAlarm(id);
-	  }
-	  
-	  /**
-	 * @param alarm
-	 * @return AlarmModel
-	 * @throws BadRequestException
-	 */
-	@RequestMapping(value="/{id}",method = RequestMethod.PATCH)
-	  @ResponseStatus(HttpStatus.OK)
-	  public AlarmModel update(@RequestBody AlarmModel alarm) throws BadRequestException  {
-		  alarmService.updateAlarm(alarm);
-		  return alarm;
-	  }
-	  
-	 /**
-	 * @param id
-	 * @throws NotFoundException
-	 * @throws BadRequestException
-	 */
-	@RequestMapping(value="/{id}",method = RequestMethod.DELETE)
-	  @ResponseStatus(HttpStatus.OK)
-	  public void delete(@PathVariable Integer id) throws NotFoundException,BadRequestException {
-	      alarmService.deleteAlarm(id);
-	  }
 
-	/**
-	 * 
-	 * @return List of ReminderModel
-	 * @throws BadRequestException
-	 */
-	@RequestMapping(value="/reminders",method = RequestMethod.GET)
-	  @ResponseStatus(HttpStatus.OK)
-	  public List<ReminderModel> view() throws BadRequestException{
-		  return alarmService.getByRecurrence(1);
-	  }
+  /**
+   * Lists all the alarms from database
+   * 
+   * @return List of AlarmModel
+   * @throws BadRequestException
+   */
+  @RequestMapping(method = RequestMethod.GET)
+  @ResponseStatus(HttpStatus.OK)
+  public List<AlarmModel> viewAll() throws BadRequestException {
+    return alarmService.viewAll();
+  }
+
+  /**
+   * @param alarm
+   * @return AlarmModel
+   * @throws BadRequestException
+   */
+  @RequestMapping(method = RequestMethod.POST)
+  @ResponseStatus(HttpStatus.CREATED)
+  public AlarmModel create(@RequestBody AddAlarmModel alarm) throws BadRequestException {
+    System.out.println(alarm.getAPillId() + "" + alarm.getARecurrence());
+    // return null;
+    return alarmService.addAlarm(alarm);
+  }
+
+  /**
+   * @param id
+   * @return UserAlarmModel
+   * @throws NotFoundException
+   * @throws BadRequestException
+   */
+  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  @ResponseStatus(HttpStatus.OK)
+  public UserAlarmModel view(@PathVariable Integer id)
+      throws NotFoundException, BadRequestException {
+    return alarmService.viewAlarm(id);
+  }
+
+  /**
+   * @param alarm
+   * @return AlarmModel
+   * @throws BadRequestException
+   */
+  @RequestMapping(value = "/{id}", method = RequestMethod.PATCH)
+  @ResponseStatus(HttpStatus.OK)
+  public AlarmModel update(@RequestBody AlarmModel alarm) throws BadRequestException {
+    alarmService.updateAlarm(alarm);
+    return alarm;
+  }
+
+  /**
+   * @param id
+   * @throws NotFoundException
+   * @throws BadRequestException
+   */
+  @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+  @ResponseStatus(HttpStatus.OK)
+  public void delete(@PathVariable Integer id) throws NotFoundException, BadRequestException {
+    alarmService.deleteAlarm(id);
+  }
+
+  /**
+   * 
+   * @return List of ReminderModel
+   * @throws BadRequestException
+   */
+  @RequestMapping(value = "/reminders", method = RequestMethod.GET)
+  @ResponseStatus(HttpStatus.OK)
+  public List<ReminderModel> view() throws BadRequestException {
+    return alarmService.getByRecurrence(1);
+  }
 }

@@ -66,10 +66,13 @@ $(document).on('mouseover', '.glyphicon-question-sign', function(){
 	    		alternatives="";
 	    		$.each(data, function(i, d) {
 	    			   alternatives+= data[i].pillName+",";
-	    			});		
+	    			});
 	    	}
 		});
-		$(this).popover({trigger: "hover",maxWidth: "600px",title: "Alternative Pills", content: " "+alternatives,});
+		$(this).popover({trigger: "hover",
+			maxWidth: "600px",title: "Alternative Pills",
+			content: " "+alternatives,});
+		console.log(alternatives);
 	  }
 });
 $(document).on('click', '.glyphicon', function(){
