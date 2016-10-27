@@ -97,6 +97,7 @@ $(document).on('submit', "form.edit_input_box", function() {
 	});
 });
 $(document).on('submit', "form.edit_pill_input_box", function() {
+	var categoryId = $("#selectCategory option:selected").val();
 	var list = $(this).closest("li");
 	var id = list.attr('id');
 	console.log(id + $(".itembox").val());
@@ -111,8 +112,12 @@ $(document).on('submit', "form.edit_pill_input_box", function() {
 		}),
 		contentType : "application/json",
 		success : function() {
-			location.reload();
-			console.log('success');
+			$('#selectCategory').find(
+					"option[value = '" + categoryId + "']").attr(
+					"selected", "selected");
+			$('#selectCategory').change();
+			//location.reload();
+			//console.log('success');
 		},
 		error : function(xhr) {
 			location.reload();
