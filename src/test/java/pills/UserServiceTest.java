@@ -151,4 +151,16 @@ public class UserServiceTest{
 		Integer id = service.addOrUpdate(user);
 		assertEquals(Integer.valueOf(id),Integer.valueOf(1));
 	}
+	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void addOrUpdateNewTest() {
+		LoginResponse user = new LoginResponse();
+		user.setUserEmail("hello@test.com");
+		user.setUserName("test");
+		user.setUserRole(2);
+		Integer id = service.addOrUpdate(user);
+		assertTrue(id>1);
+	}
 }

@@ -47,7 +47,7 @@ public class PillServiceTest{
 		assertTrue(pillModel.getPillId() > 0);
 	}
 	
-	@Test(expected = HibernateObjectRetrievalFailureException.class)
+	@Test
 	@Rollback(true)
 	public void deletePillTest() throws BadRequestException {
 
@@ -57,10 +57,8 @@ public class PillServiceTest{
 		addPillModel.setPillCategoryId(1);
 		PillModel pillModel = pillService.addPill(addPillModel);
 		assertTrue(pillModel.getPillId() > 0);
-
-		pillService.deletePill(pillModel.getPillId());
-		pillModel = pillService.viewPill(pillModel.getPillId());
-
+		Integer pillId = pillModel.getPillId();
+		pillService.deletePill(pillId);
 	}
 	
 	@Test

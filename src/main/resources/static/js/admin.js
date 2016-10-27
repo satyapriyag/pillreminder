@@ -49,7 +49,7 @@ $(document)
 				'click',
 				"button.edit",
 				function() {
-
+					var name='Category';
 					var list = $(this).closest("li");
 					var value = list.attr('value');
 					var editItemBox = "<form class='edit";
@@ -59,11 +59,12 @@ $(document)
 						editPill = "_pill_input_box'><input type='text' class='itembox' value='"
 								+ value + "'>";
 						editPill += '<select id="editCategory" name="editCategoryId"></select>';
+						name = 'Pill';
 					}
 					editItemBox += editPill;
 					editItemBox += "<div class='btn-group pull-right'>";
 					editItemBox += "<button class='submit btn btn-primary'>Submit</button>";
-					editItemBox += "<button type='button' class='back btn btn-default'>Back</button>";
+					editItemBox += "<button type='button' class='back"+name+" btn btn-default'>Back</button>";
 					editItemBox += "</div></form>";
 
 					$(this).closest("div.text_holder").replaceWith(editItemBox);
@@ -131,7 +132,7 @@ $(document)
 						}
 						var addButton = '<input type="submit" value="Add" class="btn btn-primary add'
 								+ name + '"/>';
-						var backButton = '<button type="button" class="back btn btn-default">Back</button>';
+						var backButton = '<button type="button" class="back'+name+' btn btn-default">Back</button>';
 						var twoButtons = "<div class='btn-group pull-right'>"
 								+ addButton + backButton + "</div>";
 						var row = '<li class="list-group-item"><input class="cname" type="text" placeholder="Add '
@@ -162,28 +163,37 @@ $(document).on('click', '.addCategory', function() {
 		});
 	}
 });
-$(document).on('click', '.addPill', function() {
-	var pillName = $(".cname").val();
-	if (pillName == '')
-		alert("Please enter a valid name");
-	else {
-		$.ajax({
-			url : 'pills/',
-			type : 'POST',
-			dataType : 'json',
-			data : JSON.stringify({
-				pillName : pillName,
-				pillCategoryId : $("#selectCategory option:selected").val()
-			}),
-			contentType : "application/json",
-			success : function() {
-				console.log('success');
-			},
-			error : function(xhr) {
+$(document).on(
+		'click',
+		'.addPill',
+		function() {
+			var pillName = $(".cname").val();
+			var categoryId = $("#selectCategory option:selected").val();
+			if (pillName == '')
+				alert("Please enter a valid name");
+			else {
+				$.ajax({
+					url : 'pills/',
+					type : 'POST',
+					dataType : 'json',
+					data : JSON.stringify({
+						pillName : pillName,
+						pillCategoryId : categoryId
+					}),
+					contentType : "application/json",
+					success : function() {
+						console.log('success');
+						//location.reload();
+						$('#selectCategory').find(
+								"option[value = '" + categoryId + "']").attr(
+								"selected", "selected");
+						$('#selectCategory').change();
+					},
+					error : function(xhr) {
+					}
+				});
 			}
 		});
-	}
-});
 $(document)
 		.on(
 				'change',
@@ -220,8 +230,16 @@ $(document)
 						}
 					});
 				});
-$(document).on('click', '.back', function() {
+$(document).on('click', '.backCategory', function() {
 	location.reload();
+});
+$(document).on('click', '.backPill', function() {
+	var id = $("#selectCategory option:selected").val();
+	$('#selectCategory').find(
+			"option[value = '" + id + "']").attr(
+			"selected", "selected");
+	$('#selectCategory').change();
+	
 });
 $(document).on('click', '.logout', function() {
 	$.ajax({

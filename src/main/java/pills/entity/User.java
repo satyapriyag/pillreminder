@@ -36,7 +36,7 @@ public class User  implements java.io.Serializable {
      private String userEmail;
      private String userContact;
      private Character deleted;
-     private Role userRole;
+     //private Role userRole;
      private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 //     private Set<Alarm> alarms = new HashSet<Alarm>(0);
 

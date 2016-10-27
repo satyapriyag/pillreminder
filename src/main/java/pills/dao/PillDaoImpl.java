@@ -35,11 +35,11 @@ public class PillDaoImpl implements PillDao{
   
   @SuppressWarnings("unchecked")
   public List<Pill> getAll() {
-    return getSession().createQuery("from Pill").list();
+    return getSession().createQuery("from Pill where deleted is NULL").list();
   }
 
   public Pill getById(Integer id) {
-	Pill pill = (Pill) getSession().load(Pill.class, id);
+	Pill pill = (Pill) getSession().createQuery("from Pill where pill_id ="+id).uniqueResult();
 	Hibernate.initialize(pill);
 	return pill;
   }

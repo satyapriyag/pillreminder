@@ -29,7 +29,7 @@ import org.hibernate.annotations.Where;
 )
 @SQLDelete(sql = "UPDATE pill SET deleted = '1' WHERE pill_id = ?")
 //Filter added to retrieve only records that have not been soft deleted.
-@Where(clause = "deleted IS NULL")
+//@Where(clause = "deleted IS NULL")
 public class Pill  implements java.io.Serializable {
 
 
