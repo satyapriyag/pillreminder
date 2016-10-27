@@ -17,13 +17,10 @@ import inti.ws.spring.exception.client.NotFoundException;
 
 import pills.models.AddUserModel;
 import pills.models.LoginResponse;
-import pills.entity.User;
 import pills.models.UserModel;
-import pills.models.PillModel;
 import pills.models.UserAlarmModel;
 import pills.service.UserService;
 import pills.service.AlarmService;
-import pills.service.PillService;
 
 @RestController
 @RequestMapping(value="/users")

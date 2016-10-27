@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import inti.ws.spring.exception.client.BadRequestException;
 import pills.models.AddPillModel;
-import pills.entity.Pill;
 import pills.models.PillModel;
 import pills.service.AlternativeService;
 import pills.service.PillService;

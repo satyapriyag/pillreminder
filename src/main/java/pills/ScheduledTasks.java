@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import inti.ws.spring.exception.client.BadRequestException;
 import pills.models.ReminderModel;
 import pills.service.AlarmService;
-import pills.service.MailerService;
+import pills.utilities.MailerService;
 
 
 @Component

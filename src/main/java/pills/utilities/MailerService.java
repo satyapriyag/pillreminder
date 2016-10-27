@@ -1,4 +1,4 @@
-package pills.service;
+package pills.utilities;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -24,6 +24,7 @@ public class MailerService {
 		helper.setSubject(subject);
 		helper.setTo(to);
 		helper.setText(body, true); // true indicates html
+		helper.setFrom("Pill Reminder");
 		
 		javaMailSender.send(message);
 		

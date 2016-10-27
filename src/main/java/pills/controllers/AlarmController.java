@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import inti.ws.spring.exception.client.BadRequestException;
 import inti.ws.spring.exception.client.NotFoundException;
-import pills.entity.Alarm;
 import pills.models.AddAlarmModel;
 import pills.models.AlarmModel;
 import pills.models.ReminderModel;

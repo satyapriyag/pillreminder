@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +15,13 @@ import pills.models.AddAlarmModel;
 import pills.models.AlarmModel;
 import pills.models.ReminderModel;
 import pills.models.UserAlarmModel;
-import pills.utilities.Logger;
 import pills.utilities.MappingUtility;
 
 @Service
 @Transactional
 public class AlarmServiceImpl implements AlarmService{
 	
-	private static final Logger LOG = Logger.getInstance(AlarmServiceImpl.class);
+	private static final Logger LOG = Logger.getLogger(AlarmServiceImpl.class);
 	
 	@Autowired
 	private MappingUtility mapUtility;

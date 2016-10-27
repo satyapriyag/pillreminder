@@ -1,7 +1,6 @@
 package pills.controllers;
 
 import java.security.Principal;
-import java.util.Enumeration;
 import java.util.LinkedHashMap;
 
 import javax.servlet.http.HttpSession;
@@ -17,14 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
 
 import inti.ws.spring.exception.client.BadRequestException;
 import inti.ws.spring.exception.client.ForbiddenException;
 import inti.ws.spring.exception.client.UnauthorizedException;
-import pills.models.AddUserModel;
 import pills.models.LoginResponse;
-import pills.models.UserModel;
 import pills.service.AuthenticationService;
 import pills.service.UserService;
 

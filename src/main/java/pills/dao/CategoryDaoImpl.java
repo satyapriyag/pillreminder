@@ -2,8 +2,7 @@ package pills.dao;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
@@ -16,13 +15,12 @@ import org.springframework.stereotype.Repository;
 
 import pills.entity.Category;
 import pills.entity.Pill;
-import pills.utilities.Logger;
 
 @Repository
 //@Transactional
 public class CategoryDaoImpl implements CategoryDao{
   
-  private static final Logger LOG = Logger.getInstance(CategoryDaoImpl.class);
+	private static final Logger LOG = Logger.getLogger(CategoryDaoImpl.class);
 	
   @Autowired
   private SessionFactory _sessionFactory;

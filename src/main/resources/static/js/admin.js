@@ -110,6 +110,7 @@ $(document).on('submit', "form.edit_pill_input_box", function() {
 		}),
 		contentType : "application/json",
 		success : function() {
+			location.reload();
 			console.log('success');
 		},
 		error : function(xhr) {
@@ -224,10 +225,10 @@ $(document).on('click', '.back', function() {
 });
 $(document).on('click', '.logout', function() {
 	$.ajax({
-		url : '/logout',
+		url : 'logout',
 		type : 'POST',
 		success : function() {
-			window.location.href = '/';
+			window.location.href = './';
 		}
 	});
 });
