@@ -52,9 +52,12 @@ public class ScheduledTasks {
       sendMail(reminder.getUserMail(), reminder.getUserName(), reminder.getPillName());
     }
   }
-  // @Scheduled(cron="*/5 * * * * *")
-  // public void reporttest() {
-  // log.info("test The time is now {}", dateFormat.format(new Date()));
-  // }
+   @Scheduled(cron="0 */5 * * * *")
+   public void mailForDemo() throws MessagingException, BadRequestException {
+     List<ReminderModel> reminders = alarmService.getByRecurrence(4);
+     for (ReminderModel reminder : reminders) {
+       sendMail(reminder.getUserMail(), reminder.getUserName(), reminder.getPillName());
+     }
+   }
 
 }

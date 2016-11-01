@@ -9,8 +9,12 @@ import org.springframework.orm.hibernate5.HibernateObjectRetrievalFailureExcepti
 import org.springframework.stereotype.Service;
 
 import inti.ws.spring.exception.client.BadRequestException;
+import pills.dao.RoleDao;
 import pills.dao.UserDao;
+import pills.dao.UserRoleDao;
+import pills.entity.Role;
 import pills.entity.User;
+import pills.entity.UserRole;
 import pills.models.AddUserModel;
 import pills.models.LoginResponse;
 import pills.models.UserModel;
@@ -25,6 +29,12 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private RoleDao roleDao;
+	
+	@Autowired
+	private UserRoleDao userRoleDao;
 	
 	public UserModel addUser(AddUserModel userModel) throws BadRequestException{
 		if (userModel.getUserName() == null || userModel.getUserName().equals("") ||
@@ -66,8 +76,12 @@ public class UserServiceImpl implements UserService{
 			userModel.setUserContact(user.getUserContact());
 			userModel.setUserEmail(user.getUserEmail());
 			userModel.setUserName(user.getUserName());
+			//userModel.getUserRoles();
 			userDao.save(userModel);
 			id = (userDao.getByMail(user.getUserEmail())).getUserId();
+			UserRole userRole = new UserRole(roleDao.getById(2),userDao.getByMail(user.getUserEmail()));
+			userRoleDao.save(userRole);
+			//System.out.println(x);
 		}
 		return id;
 	}

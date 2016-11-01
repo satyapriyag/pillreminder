@@ -1,7 +1,11 @@
 package pills.controllers;
 
+import java.net.URL;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,12 +21,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.rometools.rome.feed.synd.SyndEntry;
+import com.rometools.rome.feed.synd.SyndFeed;
+import com.rometools.rome.io.SyndFeedInput;
+import com.rometools.rome.io.XmlReader;
+
 import inti.ws.spring.exception.client.BadRequestException;
 import inti.ws.spring.exception.client.ForbiddenException;
 import inti.ws.spring.exception.client.UnauthorizedException;
 import pills.models.LoginResponse;
 import pills.service.AuthenticationService;
 import pills.service.UserService;
+import pills.models.FeedModel;
 
 @EnableOAuth2Sso
 @Controller
@@ -112,7 +122,7 @@ public class MainController extends WebSecurityConfigurerAdapter {
 	 * @return
 	 * @throws UnauthorizedException
 	 */
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@RequestMapping(value = "/categoryManager", method = RequestMethod.GET)
 	public String questionView(HttpSession session) throws UnauthorizedException {
 		Integer id = authenticationService.validateSession(session);
 		authenticationService.validateAdmin(id);
@@ -160,4 +170,32 @@ public class MainController extends WebSecurityConfigurerAdapter {
 		authenticationService.validateUser(id);
 		return "AlarmManager";
 	}
+	
+	   @RequestMapping("/feed")
+	    @ResponseBody
+	    public List<FeedModel> getFeed()  {
+	        try {
+	          URL feedUrl = new URL("https://health.practo.com/feed/");
+	          List<FeedModel> modelList = new ArrayList<FeedModel>();
+	          SyndFeedInput input = new SyndFeedInput();
+	           SyndFeed feed = input.build(new XmlReader(feedUrl));
+	           for (final Iterator<SyndEntry> iter = feed.getEntries().iterator();
+	               iter.hasNext(); )
+	          {
+	             FeedModel model = new FeedModel();
+	              final SyndEntry entry = (SyndEntry) iter.next();
+	              String title = entry.getTitle();
+	              model.setTitle(title);
+	              String description=entry.getDescription().getValue();
+	              model.setDescription(description);
+	              modelList.add(model);
+	          }
+	           return modelList;
+	           
+	        } catch (Exception e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	    return null;    
+	    }
 }

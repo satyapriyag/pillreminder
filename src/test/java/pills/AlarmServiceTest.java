@@ -148,4 +148,12 @@ public class AlarmServiceTest{
 		List<UserAlarmModel> user = alarmService.getByUserId(2);
 		assertEquals(user.size(),1);
 	}
+
+    @Test
+    @Transactional
+    @Rollback(true)
+    public void getForTodayTest() throws BadRequestException{
+        List<UserAlarmModel> user = alarmService.getForToday(2);
+        assertEquals(user.size(),1);
+    }
 }

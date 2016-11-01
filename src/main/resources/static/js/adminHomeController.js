@@ -32,3 +32,19 @@ angular.module("app", []).controller("home",
 						});
 					};
 				});
+$(document).ready(function(){
+	$(".loader").show();
+	$.ajax({
+		url: 'feed',
+		dataType:'json',
+		success: function(data){
+			$(".loader").hide();
+			$.each(data, function(i, d) {
+				var row='<div class="col-md-12"><div class="update-nag"><div class="update-split update-info"><i class="glyphicon glyphicon-hand-right"></i></div>';
+				row += '<div class="update-text"><b>'+data[i].title +'</b>'+ data[i].description + '</div>';
+          row+='</div></div></div>';
+          $("#feed").append(row);
+			});
+		}
+	});
+});
