@@ -24,7 +24,7 @@
 		<!-- <nav class="navbar navbar-dark bg-primary"> -->
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">PILL REMINDER</a>
+				<a class="navbar-brand" href="login">PILL REMINDER</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="userHome">Home</a></li>
@@ -47,19 +47,27 @@
 			</div>
 			<br />
 			<div class="form-group" style="background-color: #D3D3D3">
+			<div class="formSelectCategory">
 				<select class="form-control" id="selectCategory" name="categoryId">
 					<option value="0">--Select a category to view pills--</option>
-				</select><br /> <select class="form-control" id="selectPill" name="pillId">
+				</select><br />
+				</div>
+				<div class="formSelectPill">
+				<select class="form-control" id="selectPill" name="pillId">
 					<option value="0">--Select a pill--</option>
-				</select><br /> <select class="form-control" id="selectRecurrence"
+				</select><br />
+				</div> 
+				<div class="formSelectRecurrence">
+				 <select class="form-control" id="selectRecurrence"
 					name="recurrence">
 					<option value="0">--Select a time--</option>
 					<option value="1">9:00 HRS</option>
 					<option value="2">1:00 HRS</option>
 					<option value="3">7:00 HRS</option>
+					<option value="4">for demo</option>
 
-				</select><br />
-				<div class='col-md-6 row '>
+				</select><br /></div>
+				<div class='col-md-6 row formStartDate'>
 					<div class='input-group date' id='datetimepicker6'>
 						<input type='text' name="startDate" id="startDate"
 							class="form-control" placeholder="Start Date" /> <span
@@ -68,7 +76,7 @@
 						</span>
 					</div>
 				</div>
-				<div class='col-md-6 '>
+				<div class='col-md-6 formEndDate'>
 					<div class='input-group date' id='datetimepicker7'>
 						<input type='text' name="endDate" id="endDate"
 							class="form-control pull-right" placeholder="End Date" /> <span

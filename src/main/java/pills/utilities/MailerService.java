@@ -24,7 +24,7 @@ public class MailerService {
 		helper.setSubject(subject);
 		helper.setTo(to);
 		helper.setText(body, true); // true indicates html
-		helper.setFrom("Pill Reminder");
+		helper.setFrom("PillReminder");
 		
 		javaMailSender.send(message);
 		

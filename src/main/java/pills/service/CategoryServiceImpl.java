@@ -16,8 +16,10 @@ import pills.utilities.MappingUtility;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
-
+    
+  
 	private static final Logger LOG = Logger.getLogger(AuthenticationServiceImpl.class);
+	
 	
 	@Autowired
 	private MappingUtility mapUtility;
@@ -31,7 +33,6 @@ public class CategoryServiceImpl implements CategoryService {
 			throw new BadRequestException("Required parameters are either missing or invalid");
 		Category category = new Category(categoryName);
 		categoryDao.save(category);
-		LOG.info("Category is added");
 		return mapUtility.mapCategory(category);
 	}
 

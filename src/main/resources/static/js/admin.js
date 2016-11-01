@@ -1,7 +1,7 @@
 $(document)
 		.ready(
 				function() {
-
+					$(".alert").hide();
 					var deleteButton = "<button class='delete btn btn-warning'>Delete</button>";
 					var editButton = "<button class='edit btn btn-success'>Edit</button>";
 					var twoButtons = "<div class='btn-group pull-right'>"
@@ -149,7 +149,7 @@ $(document)
 $(document).on('click', '.addCategory', function() {
 	var categoryName = $(".cname").val();
 	if (categoryName == '')
-		alert("Please enter a valid name");
+		$(".alert").show();
 	else {
 		$.ajax({
 			url : 'categories/',
@@ -175,7 +175,7 @@ $(document).on(
 			var pillName = $(".cname").val();
 			var categoryId = $("#selectCategory option:selected").val();
 			if (pillName == '')
-				alert("Please enter a valid name");
+				$(".alert").show();
 			else {
 				$.ajax({
 					url : 'pills/',
@@ -239,6 +239,7 @@ $(document).on('click', '.backCategory', function() {
 	location.reload();
 });
 $(document).on('click', '.backPill', function() {
+	$(".alert").hide();
 	var id = $("#selectCategory option:selected").val();
 	$('#selectCategory').find(
 			"option[value = '" + id + "']").attr(

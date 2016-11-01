@@ -38,7 +38,9 @@ public class ScheduledTasks {
   @Scheduled(cron = "0 0 13 * * *")
   public void mailInAfternoon() throws MessagingException, BadRequestException {
     List<ReminderModel> reminders = alarmService.getByRecurrence(2);
+    
     for (ReminderModel reminder : reminders) {
+      System.out.println( reminder.getUserMail() );
       sendMail(reminder.getUserMail(), reminder.getUserName(), reminder.getPillName());
     }
   }
