@@ -1,3 +1,4 @@
+![](https://travis-ci.org/satyapriyag/pillreminder.svg?branch=master)
 # Pill Reminder
 
 A webapp to remind the users to take medicines through email.
@@ -9,12 +10,6 @@ A webapp to remind the users to take medicines through email.
 
 ## Project Plan
 *  [Development Plan](https://docs.google.com/document/d/1BrymY5xH3QL4oQcB7Himzb7hDTn4frPLo1ZTPs-ms_Y/edit)
-
-## Dependencies
-The following should be installed in the machine to run the project.
-* Java 8
-* Maven
-* Msql
 
 ## Technologies
 * Java(LANGUAGE)
