@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import inti.ws.spring.exception.client.BadRequestException;
 import pills.models.AddPillModel;
+import pills.models.AlternativeModel;
 import pills.models.PillModel;
 import pills.service.AlternativeService;
 import pills.service.PillService;
@@ -95,7 +96,7 @@ public class PillsController {
 	 */
 	@RequestMapping(value = "/{id}/alternatives", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public List<PillModel> getPills(@PathVariable Integer id) throws BadRequestException {
+	public List<AlternativeModel> getPills(@PathVariable Integer id) throws BadRequestException {
 		return alternativeService.getByPillId(id);
 	}
 }

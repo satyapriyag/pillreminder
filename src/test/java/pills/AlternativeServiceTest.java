@@ -40,8 +40,8 @@ public class AlternativeServiceTest {
   @Transactional
   @Rollback(true)
   public void alternativePillTest() {
-    List<PillModel> pill = alternateService.getByPillId(2);
-    assertEquals(Integer.valueOf(pill.get(0).getPillId()), Integer.valueOf(3));
+    List<AlternativeModel> pill = alternateService.getByPillId(2);
+    assertEquals(Integer.valueOf(pill.get(0).getPillId()), Integer.valueOf(2));
   }
   
   @Test

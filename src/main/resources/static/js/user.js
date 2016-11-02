@@ -108,7 +108,7 @@ $(document).on('mouseover', '*[data-poload]', function() {
 	$.get(e.data('poload'), function(data) {
 		alternatives = "";
 		$.each(data, function(i, d) {
-			alternatives += data[i].pillName + ",";
+			alternatives += data[i].alternatePillName + ",";
 		});
 		if (data == "") {
 			alternatives = "No alternatives found";

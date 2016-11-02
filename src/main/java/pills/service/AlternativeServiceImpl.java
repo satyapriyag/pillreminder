@@ -45,9 +45,9 @@ public class AlternativeServiceImpl implements AlternativeService{
 		Alternative alternative = mapUtility.mapAlternativeModel(alternativeModel);
 		alternativeDao.update(alternative);
 	}
-	public List<PillModel> getByPillId(Integer pillId){
+	public List<AlternativeModel> getByPillId(Integer pillId){
 		List<Alternative> alternatives = alternativeDao.getByPillId(pillId);
-		return mapUtility.mapAlternativesToPill(alternatives);
+		return mapUtility.mapAlternatives(alternatives);
 	}
 
 }

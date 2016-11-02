@@ -286,7 +286,7 @@ $(document)
 							+ deleteButton + "</div>";
 
 					$.ajax({
-						url : 'alternatives',
+						url : 'pills/'+pillId+'/alternatives',
 						dataType : 'json',
 						success : function(data) {
 

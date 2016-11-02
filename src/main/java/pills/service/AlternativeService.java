@@ -25,5 +25,5 @@ public interface AlternativeService{
    * @param pillId Id of the pill for which alternative pills need to be retrieved
    * @return List of {@link PillModel} List of alternate pills
    */
-	public List<PillModel> getByPillId(Integer pillId);
+	public List<AlternativeModel> getByPillId(Integer pillId);
 }
