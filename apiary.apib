@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://http://ec2-35-160-66-173.us-west-2.compute.amazonaws.com:8080/pill_reminder-0.0.1-SNAPSHOT
 
 # PillReminder
 
@@ -13,8 +13,12 @@ Pill Reminder is a simple API allowing consumers to view pills, categories and g
 
         [
             {
-                "id": "1",
-                "name": "test"
+                "categoryId": "1",
+                "categoryName": "Vitamins"
+            },
+            {
+                "categoryId": "2",
+                "categoryName": "AntiBiotics"
             }
         ]
 
@@ -26,7 +30,7 @@ object containing name of the category.
 + Request (application/json)
 
         {
-            "name": "test",
+            "categoryName": "Vitamins",
         }
 
 + Response 201 (application/json)
@@ -38,8 +42,8 @@ object containing name of the category.
     + Body
 
             {
-                "id": "1",
-                "name": "test"
+                "categoryId": "1",
+                "categoryName": "Vitamins"
             }
 ## Individual Category [/categories/{id}]
 
@@ -49,13 +53,21 @@ object containing name of the category.
 
         [
             {
-                "id": "1",
-                "name": "test"
+                "categoryId": "1",
+                "categoryName": "Vitamins"
             }
         ]
 
-### Update a specific Category [PUT]
+### Update a specific Category [PATCH]
 
++ Request (application/json)
+        
+        [
+            {   
+                "categoryId": "1",
+                "categoryName": "Vitamins"
+            }
+        ]
 + Response 200 (OK)
 
 ### Delete a specific Category [DELETE]
@@ -69,30 +81,30 @@ object containing name of the category.
         [
             {
                 "pill_id": "1",
-                "pill_name": "test",
+                "pill_name": "BComplex",
                 "pill_category":"1"
             },
             {
                 "pill_id": "2",
-                "pill_name": "test",
+                "pill_name": "Zinc",
                 "pill_category":"1"
             }
         ]
 
 ## Pills Collection [/pills]
 
-### List All Categories [GET]
+### List All Pills [GET]
 
 + Response 200 (application/json)
 
         [
             {
                 "id": "1",
-                "name": "test"
+                "name": "BComplex"
             }
         ]
 
-### Create a New Category [POST]
+### Create a New Pill [POST]
 
 You may create your own pill using this action. It takes a JSON
 object containing name and category of the pill.
@@ -100,7 +112,7 @@ object containing name and category of the pill.
 + Request (application/json)
 
         {
-            "name": "test",
+            "name": "Zinc",
             "category_id": "1"
         }
 
@@ -113,8 +125,8 @@ object containing name and category of the pill.
     + Body
 
             {
-                "id": "1",
-                "name": "test",
+                "id": "2",
+                "name": "Zinc",
                 "category_id": "1"
             }
 
@@ -128,13 +140,22 @@ object containing name and category of the pill.
         [
             {
                 "pill_id": "1",
-                "pill_name": "test",
+                "pill_name": "BComplex",
                 "pill_category":"1"
             }
         ]
 
-### Update a specific Pill [PUT]
+### Update a specific Pill [PATCH]
 
++ Request (application/json)
+
+        [
+            {
+                "pill_id": "1",
+                "pill_name": "Zinc",
+                "pill_category":"1"
+            }
+        ]
 + Response 200 (OK)
 
 ### Delete a specific Pill [DELETE]
@@ -164,11 +185,37 @@ object containing name and category of the pill.
         [
             {
                 "user_id": "1",
-                "user_name": "test",
-                "user_email": "test@test",
-                "user_contact":"1"
+                "user_name": "Satya",
+                "user_email": "satyapriya.g@gmail.com",
+                "user_contact":"9999999999"
             }
         ]
+## Individual Alarm [/alarms/{id}]
+
+### Retrieve a specific Category [GET]
+
++ Response  200 (application/json)
+
+        [
+            {
+              "aid": 14,
+              "apillId": 3,
+              "arecurrence": 1,
+              "auserId": 1,
+              "astartDate": "2016-10-28",
+              "aendDate": "2016-10-31",
+              "apillName": "B-12 Complex",
+              "acategoryId": 3
+            }
+        ]
+
+### Update a specific Alarm [PATCH]
+
++ Response 200 (OK)
+
+### Delete a specific Alarm [DELETE]
+
++ Response 200 (OK)
 
 ## Alarms [/users/{id}/alarms]
 
@@ -177,24 +224,66 @@ object containing name and category of the pill.
 + Response 200 (application/json)
 
         [
-            {
-                "user_id": "1",
-                "pill_id": "1",
-                "alarm_timestamp": "test",
-                "start_date":"1",
-                "end_date": "",
-                "recurrence":""
-            }
+            
+              {
+                "aid": 14,
+                "apillId": 3,
+                "arecurrence": 1,
+                "auserId": 1,
+                "astartDate": "2016-10-28",
+                "aendDate": "2016-10-31",
+                "apillName": "B-12 Complex",
+                "acategoryId": 3
+              },
+              {
+                "aid": 15,
+                "apillId": 3,
+                "arecurrence": 2,
+                "auserId": 1,
+                "astartDate": "2016-10-26",
+                "aendDate": "2016-10-29",
+                "apillName": "B-12 Complex",
+                "acategoryId": 3
+              }
         ]
 
-##Role [/user/{id}/role]
+## Alarms for current day [/users/{id}/today]
 
-### Retrieve the role for specific user
+### Retrieve all alarms of specific User for today  [GET]
+
 
 + Response 200 (application/json)
 
         [
+            
             {
-              "role" : "admin"
-            }
+            "aid": 19,
+            "apillId": 4,
+            "arecurrence": 1,
+            "auserId": 144,
+            "astartDate": "2016-10-22",
+            "aendDate": "2016-11-05",
+            "apillName": "test",
+            "acategoryId": 3
+            },
+            {
+            "aid": 20,
+            "apillId": 5,
+            "arecurrence": 1,
+            "auserId": 144,
+            "astartDate": "2016-10-29",
+            "aendDate": "2016-11-05",
+            "apillName": "test edit",
+            "acategoryId": 4
+            },
+            {
+            "aid": 29,
+            "apillId": 126,
+            "arecurrence": 4,
+            "auserId": 144,
+            "astartDate": "2016-10-28",
+            "aendDate": "2016-11-05",
+            "apillName": "add pill test",
+            "acategoryId": 127
+           }
         ]
