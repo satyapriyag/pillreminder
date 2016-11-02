@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 
 import pills.dao.AlternativeDao;
 import pills.entity.Alternative;
+import pills.models.AlternativeModel;
 import pills.models.PillModel;
-//import pills.models.AddAlternativeModel;
-//import pills.models.AlternativeModel;
+import pills.models.AddAlternativeModel;
 import pills.utilities.MappingUtility;
 
 @Service
@@ -24,29 +24,29 @@ public class AlternativeServiceImpl implements AlternativeService{
 	@Autowired
 	private AlternativeDao alternativeDao;
 	
-/*	public AlternativeModel addAlternative(AddAlternativeModel alternativeModel){
-	    Alternative alternative = mapUtility.mapAddAlternativeModel(alternativeModel);
-		alternativeDao.save(alternative);
-		return mapUtility.mapAlternative(alternative);
-	}
-	public void deleteAlternative(Alternative alternative){
-		alternativeDao.delete(alternative);
-	}
-	public AlternativeModel viewAlternative(Integer id){
-		Alternative alternative =alternativeDao.getById(id);
-		return mapUtility.mapAlternative(alternative);
-	}
-	public List<AlternativeModel> viewAll(){
-		List<Alternative> alternatives =alternativeDao.getAll();
-		return mapUtility.mapAlternatives(alternatives);
-	}
-	public void updateAlternative(AlternativeModel alternativeModel){
-		Alternative alternative = mapUtility.mapAlternativeModel(alternativeModel);
-		alternativeDao.update(alternative);
-	}*/
+//	public AlternativeModel addAlternative(AddAlternativeModel alternativeModel){
+//	    Alternative alternative = mapUtility.mapAddAlternativeModel(alternativeModel);
+//		alternativeDao.save(alternative);
+//		return mapUtility.mapAlternative(alternative);
+//	}
+//	public void deleteAlternative(Alternative alternative){
+//		alternativeDao.delete(alternative);
+//	}
+//	public AlternativeModel viewAlternative(Integer id){
+//		Alternative alternative =alternativeDao.getById(id);
+//		return mapUtility.mapAlternative(alternative);
+//	}
+//	public List<AlternativeModel> viewAll(){
+//		List<Alternative> alternatives =alternativeDao.getAll();
+//		return mapUtility.mapAlternatives(alternatives);
+//	}
+//	public void updateAlternative(AlternativeModel alternativeModel){
+//		Alternative alternative = mapUtility.mapAlternativeModel(alternativeModel);
+//		alternativeDao.update(alternative);
+//	}
 	public List<PillModel> getByPillId(Integer pillId){
 		List<Alternative> alternatives = alternativeDao.getByPillId(pillId);
-		return mapUtility.mapAlternatives(alternatives);
+		return mapUtility.mapAlternativesToPill(alternatives);
 	}
 
 }

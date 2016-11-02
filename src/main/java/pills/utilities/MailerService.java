@@ -8,13 +8,17 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
+import pills.service.MailContentBuilder;
+
 @Component
 public class MailerService {
 	
 	@Autowired
 	private JavaMailSender javaMailSender;	
+	@Autowired
+    private MailContentBuilder mailContentBuilder;
 	
-	public void send(String to, String subject, String body) throws MessagingException {
+	public void send(String to, String subject, String body, String name) throws MessagingException {
 		
 		MimeMessage message = javaMailSender.createMimeMessage();
 		MimeMessageHelper helper;
@@ -23,7 +27,8 @@ public class MailerService {
 													   // multipart message
 		helper.setSubject(subject);
 		helper.setTo(to);
-		helper.setText(body, true); // true indicates html
+		String content = mailContentBuilder.build(body,name);
+		helper.setText(content, true); // true indicates html
 		helper.setFrom("PillReminder");
 		
 		javaMailSender.send(message);

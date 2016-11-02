@@ -15,6 +15,7 @@ import pills.models.AddAlarmModel;
 import pills.models.AddPillModel;
 import pills.models.AddUserModel;
 import pills.models.AlarmModel;
+import pills.models.AlternativeModel;
 import pills.models.CategoryModel;
 import pills.models.PillModel;
 import pills.models.ReminderModel;
@@ -53,6 +54,22 @@ public class MappingUtility {
 		return categoryModel;
 	}
 	
+//	   public List<AlternativeModel> mapAlternatives(List<Alternative> alternatives) {
+//	        List<AlternativeModel> alternativeModels = new ArrayList<>();
+//	        for (Alternative alternative : alternatives) {
+//	            alternativeModels.add(mapAlternative(alternative));
+//	        }
+//	        return alternativeModels;
+//	    }
+//	   
+//	    public AlternativeModel mapAlternative(Alternative alternative) {
+//	      AlternativeModel alternativeModel = new AlternativeModel();
+//	      alternativeModel.setAltId(alternative.getAltId());
+//	      alternativeModel.setAlternatePillId(alternative.get);
+//	      alternativeModel.setCategoryName(category.getCategoryName());
+//	        return alternativeModel;
+//	    }
+	
 	/**
 	 * 
 	 * @param categoryModel
@@ -70,11 +87,11 @@ public class MappingUtility {
 	 * @param alternatives
 	 * @return
 	 */
-	public List<PillModel> mapAlternatives(List<Alternative> alternatives){
+	public List<PillModel> mapAlternativesToPill(List<Alternative> alternatives){
 		List<PillModel> pills = new ArrayList<>();
 		for(Alternative alternative:alternatives){
-			System.out.println("alt id "+alternative.getAltId());
-			System.out.println(alternative.getPillByAlternatePillId().getPillName());
+			//System.out.println("alt id "+alternative.getAltId());
+			//System.out.println(alternative.getPillByAlternatePillId().getPillName());
 			pills.add(mapPill(alternative.getPillByAlternatePillId()));
 		}
 		return pills;

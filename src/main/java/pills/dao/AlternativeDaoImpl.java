@@ -23,28 +23,28 @@ public class AlternativeDaoImpl implements AlternativeDao {
     return _sessionFactory.getCurrentSession();
   }
 
-  // public void save(Alternative alternative) {
-  // getSession().save(alternative);
-  // }
-  //
-  // public void delete(Alternative alternative) {
-  // getSession().delete(alternative);
-  // return;
-  // }
+   public void save(Alternative alternative) {
+   getSession().save(alternative);
+   }
+  
+   public void delete(Alternative alternative) {
+   getSession().delete(alternative);
+   return;
+   }
   public Alternative getById(Integer id) {
     Alternative alternative = (Alternative) getSession().load(Alternative.class, id);
     Hibernate.initialize(alternative);
     return alternative;
   }
-  // @SuppressWarnings("unchecked")
-  // public List<Alternative> getAll() {
-  // return getSession().createQuery("from Alternative").list();
-  // }
-  //
-  // public void update(Alternative alternative) {
-  // getSession().update(alternative);
-  // return;
-  // }
+   @SuppressWarnings("unchecked")
+   public List<Alternative> getAll() {
+   return getSession().createQuery("from Alternative").list();
+   }
+  
+   public void update(Alternative alternative) {
+   getSession().update(alternative);
+   return;
+   }
 
   @SuppressWarnings("unchecked")
   public List<Alternative> getByPillId(Integer pillId) {

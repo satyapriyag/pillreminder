@@ -15,7 +15,7 @@ import pills.models.PillModel;
  */
 public interface AlternativeService{
 	/*public AlternativeModel addAlternative(AddAlternativeModel alternative);
-	public void deleteAlternative(Alternative alternative);
+	public void deleteAlternative(AlternativeModel alternative);
 	public List<AlternativeModel> viewAll();
 	public AlternativeModel viewAlternative(Integer id);
 	public void updateAlternative(AlternativeModel alternative);*/

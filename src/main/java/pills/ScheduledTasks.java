@@ -24,7 +24,7 @@ public class ScheduledTasks {
   private MailerService smtpMailSender;
 
   public void sendMail(String mail, String name, String pill) throws MessagingException {
-    smtpMailSender.send(mail, "PillReminder", "Hi " + name + "!\n Time to take " + pill);
+    smtpMailSender.send(mail, "PillReminder", "Time to take " + pill , name);
   }
 
   @Scheduled(cron = "0 0 9 * * *")
