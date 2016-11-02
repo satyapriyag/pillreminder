@@ -4,7 +4,7 @@
 A webapp to remind the users to take medicines through email.
 
 ## Documentation
-* [Requirement Doc](https://drive.google.com/drive/u/1/folders/0ByDns1hpfrJjYlhuQ2VsTmM2ZG8)
+* [Requirement Doc](https://docs.google.com/a/practo.com/document/d/1BrymY5xH3QL4oQcB7Himzb7hDTn4frPLo1ZTPs-ms_Y/edit?usp=sharing)
 * [ ApiaryLink ](https://jsapi.apiary.io/previews/pillreminder/reference)
 *  [Schema diagram](https://docs.google.com/document/d/1yLMsxYS-QrtAle9yoIo3k3o4WQwe9fKnI_fM6Cidkxs/edit)
 
