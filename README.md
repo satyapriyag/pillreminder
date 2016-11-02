@@ -1,7 +1,9 @@
 ![](https://travis-ci.org/satyapriyag/pillreminder.svg?branch=master)
 # Pill Reminder
 
-A webapp to remind the users to take medicines through email.
+A webapp to remind the users to take medicines through email.It has both admin and user level logins.
+An admin can manage categories, pills and alternative pills.
+A user can view these pills and set alarms as he wishes to get reminders.
 
 ## Documentation
 * [Requirement Doc](https://drive.google.com/file/d/0ByDns1hpfrJjYmt0NmlOZ2ltNWM/view?usp=sharing)
@@ -15,8 +17,11 @@ A webapp to remind the users to take medicines through email.
 * Java(LANGUAGE)
 * Mysql (DATABASE)
 * Hibernate (ORM )
-* Javascript,Css
+* Javascript,CSS,HTML
 * Google sign in (User Authentication)
 * HsqlDb (Used for testing)
+* Google checkstyle 
 * [Travis](https://travis-ci.org/satyapriyag/pillreminder)
-* [Amazon Ec2](http://ec2-35-160-66-173.us-west-2.compute.amazonaws.com:8080/) for Hosting
+* [Sentry](https://sentry.io/satya-priya/pill_reminder/)
+* [Amazon Ec2](http://ec2-35-160-66-173.us-west-2.compute.amazonaws.com:8080/pill_reminder-0.0.1-SNAPSHOT/) for Hosting
+* [New Relic](https://rpm.newrelic.com/accounts/1460758/applications/26714624)
