@@ -5,14 +5,12 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.HibernateObjectRetrievalFailureException;
 import org.springframework.stereotype.Service;
 
 import inti.ws.spring.exception.client.BadRequestException;
 import pills.dao.RoleDao;
 import pills.dao.UserDao;
 import pills.dao.UserRoleDao;
-import pills.entity.Role;
 import pills.entity.User;
 import pills.entity.UserRole;
 import pills.models.AddUserModel;
@@ -76,12 +74,10 @@ public class UserServiceImpl implements UserService{
 			userModel.setUserContact(user.getUserContact());
 			userModel.setUserEmail(user.getUserEmail());
 			userModel.setUserName(user.getUserName());
-			//userModel.getUserRoles();
 			userDao.save(userModel);
 			id = (userDao.getByMail(user.getUserEmail())).getUserId();
 			UserRole userRole = new UserRole(roleDao.getById(2),userDao.getByMail(user.getUserEmail()));
 			userRoleDao.save(userRole);
-			//System.out.println(x);
 		}
 		return id;
 	}

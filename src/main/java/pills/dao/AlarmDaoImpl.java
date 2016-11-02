@@ -18,7 +18,7 @@ import pills.entity.Alarm;
 public class AlarmDaoImpl implements AlarmDao {
 
   private static final Logger LOG = Logger.getLogger(AlarmDaoImpl.class);
-  
+
   @Autowired
   private SessionFactory _sessionFactory;
 
@@ -27,18 +27,18 @@ public class AlarmDaoImpl implements AlarmDao {
   }
 
   public void save(Alarm alarm) {
-    LOG.debug("Alarm with id"+alarm.getAId()+" is to be added");
+    LOG.debug("Alarm with id" + alarm.getAId() + " is to be added");
     getSession().save(alarm);
   }
 
   public void delete(Alarm alarm) {
-    LOG.debug("Alarm with id"+alarm.getAId()+" is to be deleted");
+    LOG.debug("Alarm with id" + alarm.getAId() + " is to be deleted");
     getSession().delete(alarm);
     return;
   }
 
   public Alarm getById(Integer id) {
-    LOG.debug("Alarm with id"+ id +" is to be initialized");
+    LOG.debug("Alarm with id" + id + " is to be initialized");
     Alarm alarm = (Alarm) getSession().load(Alarm.class, id);
     Hibernate.initialize(alarm);
     return alarm;
@@ -51,7 +51,7 @@ public class AlarmDaoImpl implements AlarmDao {
   }
 
   public void update(Alarm alarm) {
-    LOG.debug("Alarm with id"+alarm.getAId()+" is to be updated");
+    LOG.debug("Alarm with id" + alarm.getAId() + " is to be updated");
     getSession().update(alarm);
     return;
   }
@@ -65,7 +65,8 @@ public class AlarmDaoImpl implements AlarmDao {
   @SuppressWarnings("unchecked")
   public List<Alarm> getByRecurrence(int time) {
     LOG.debug("Fetching all alarms for recurrence time " + time);
-    return getSession().createQuery("from Alarm where a_recurrence =" + time).list();
+    return getSession().createQuery("from Alarm where a_recurrence =" + time
+        + "AND a_start_date<=CURDATE() AND a_end_date>=CURDATE()").list();
   }
 
   @SuppressWarnings("unchecked")

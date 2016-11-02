@@ -138,7 +138,7 @@ public class AlarmServiceTest{
 	@Rollback(true)
 	public void getByRecurrenceTest() throws BadRequestException{
 		List<ReminderModel> recurence = alarmService.getByRecurrence(3);
-		assertEquals(recurence.size(),2);
+		assertEquals(recurence.size(),1);
 	}
 
 	@Test

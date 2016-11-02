@@ -18,7 +18,7 @@ import pills.utilities.MappingUtility;
 public class CategoryServiceImpl implements CategoryService {
     
   
-	private static final Logger LOG = Logger.getLogger(AuthenticationServiceImpl.class);
+  private static final Logger logger = Logger.getLogger(CategoryServiceImpl.class);
 	
 	
 	@Autowired
@@ -42,7 +42,7 @@ public class CategoryServiceImpl implements CategoryService {
 			throw new BadRequestException("Required parameters are either missing or invalid");
 		Category category = new Category(id);
 		categoryDao.delete(category);
-		LOG.info("Category is deleted");
+		logger.info("Category is deleted");
 	}
 
 	@Transactional
@@ -64,8 +64,8 @@ public class CategoryServiceImpl implements CategoryService {
 			throw new BadRequestException("Required parameters are either missing or invalid");
 		Category updatedCategory = mapUtility.mapCategoryModel(category);
 		categoryDao.update(updatedCategory);
-		LOG.info("Category is updtaed");
-		LOG.warn("Testing");
+		logger.info("Category is updtaed");
+		logger.warn("Testing");
 		return mapUtility.mapCategory(categoryDao.getById(id));
 	}
 }

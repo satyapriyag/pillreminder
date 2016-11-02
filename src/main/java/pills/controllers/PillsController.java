@@ -31,8 +31,7 @@ public class PillsController {
 	/**
 	 * Gets the list of all pills
 	 * 
-	 * @return List<PillModel>
-	 * @throws BadRequestException
+	 * @return List of PillModel
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
@@ -91,7 +90,7 @@ public class PillsController {
 	/**
 	 * Gets all alternate pills for pill with pillId as id
 	 * @param id
-	 * @return List<PillModel>
+	 * @return List of PillModel
 	 * @throws BadRequestException
 	 */
 	@RequestMapping(value = "/{id}/alternatives", method = RequestMethod.GET)

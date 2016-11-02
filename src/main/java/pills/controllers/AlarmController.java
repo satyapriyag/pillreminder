@@ -31,7 +31,7 @@ public class AlarmController {
    * Lists all the alarms from database
    * 
    * @return List of AlarmModel
-   * @throws BadRequestException
+   * @throws BadRequestException Thrown when there is exception in database
    */
   @RequestMapping(method = RequestMethod.GET)
   @ResponseStatus(HttpStatus.OK)
@@ -40,9 +40,9 @@ public class AlarmController {
   }
 
   /**
-   * @param alarm
+   * @param alarm {@link AddAlarmModel} details of the alarm to be added
    * @return AlarmModel
-   * @throws BadRequestException
+   * @throws BadRequestException Thrown when there is exception in database
    */
   @RequestMapping(method = RequestMethod.POST)
   @ResponseStatus(HttpStatus.CREATED)
@@ -53,10 +53,10 @@ public class AlarmController {
   }
 
   /**
-   * @param id
+   * @param id Id of the alarm to be viewed
    * @return UserAlarmModel
-   * @throws NotFoundException
-   * @throws BadRequestException
+   * @throws NotFoundException Thrown when there is no alarm is found for particular id
+   * @throws BadRequestException Thrown when there is exception in database
    */
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
   @ResponseStatus(HttpStatus.OK)
@@ -66,9 +66,9 @@ public class AlarmController {
   }
 
   /**
-   * @param alarm
+   * @param alarm {@link AlarmModel}
    * @return AlarmModel
-   * @throws BadRequestException
+   * @throws BadRequestException Thrown when there is exception in database
    */
   @RequestMapping(value = "/{id}", method = RequestMethod.PATCH)
   @ResponseStatus(HttpStatus.OK)
@@ -78,9 +78,9 @@ public class AlarmController {
   }
 
   /**
-   * @param id
-   * @throws NotFoundException
-   * @throws BadRequestException
+   * @param id Id of the alarm to be deleted
+   * @throws NotFoundException Thrown when there is no object with given id
+   * @throws BadRequestException Thrown when there is exception in database
    */
   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
   @ResponseStatus(HttpStatus.OK)
@@ -90,8 +90,8 @@ public class AlarmController {
 
   /**
    * 
-   * @return List of ReminderModel
-   * @throws BadRequestException
+   * @return List of {@link ReminderModel}
+   * @throws BadRequestException Thrown when there is exception in database
    */
   @RequestMapping(value = "/reminders", method = RequestMethod.GET)
   @ResponseStatus(HttpStatus.OK)

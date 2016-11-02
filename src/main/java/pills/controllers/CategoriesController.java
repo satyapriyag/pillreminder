@@ -37,8 +37,8 @@ public class CategoriesController {
   /**
    * Gets the list of all categories
    * 
-   * @return List<CategoryModel>
-   * @throws BadRequestException
+   * @return List of {@link CategoryModel}
+   * @throws BadRequestException Thrown when there is exception in database
    */
   @RequestMapping(method = RequestMethod.GET)
   @ResponseStatus(HttpStatus.OK)
@@ -49,9 +49,9 @@ public class CategoriesController {
   /**
    * Adds the category to the database
    * 
-   * @param category
-   * @return CategoryModel
-   * @throws BadRequestException
+   * @param category Name of the category to be added
+   * @return {@link CategoryModel}
+   * @throws BadRequestException Thrown when there is exception in database
    */
   @RequestMapping(method = RequestMethod.POST)
   @ResponseStatus(HttpStatus.CREATED)
@@ -62,10 +62,10 @@ public class CategoriesController {
   /**
    * Gets the details of category with categoryId as id
    * 
-   * @param id
-   * @return CategoryModel
-   * @throws NotFoundException
-   * @throws BadRequestException, ObjectNotFoundException
+   * @param id Id of the category to be viewed
+   * @return CategoryModel {@link CategoryModel}
+   * @throws NotFoundException Thrown when there is no category with given id
+   * @throws BadRequestException Thrown when there is exception in database
    */
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
   @ResponseStatus(HttpStatus.OK)
@@ -77,9 +77,10 @@ public class CategoriesController {
   /**
    * Updates the details of category with categoryId as id
    * 
-   * @param category
-   * @return CategoryModel
-   * @throws BadRequestException
+   * @param category {@link CategoryModel}
+   * @param id Id of the category to be updated
+   * @return {@link CategoryModel}
+   * @throws BadRequestException Thrown when there is exception in database
    */
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
   @ResponseStatus(HttpStatus.OK)
@@ -91,9 +92,9 @@ public class CategoriesController {
   /**
    * Deletes the category with categoryId as id
    * 
-   * @param id
-   * @throws NotFoundException
-   * @throws BadRequestException
+   * @param id of the category to be deleted
+   * @throws NotFoundException Thrown when there is no category with given id
+   * @throws BadRequestException Thrown when there is exception in database
    */
   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
   @ResponseStatus(HttpStatus.OK)
@@ -105,8 +106,9 @@ public class CategoriesController {
   /**
    * Fetches all the pills with categoryId as id
    * 
-   * @param id
-   * @throws BadRequestException
+   * @param id of the category
+   * @return List of {@link PillModel}
+   * @throws BadRequestException Thrown when there is exception in database
    */
   @RequestMapping(value = "/{id}/pills", method = RequestMethod.GET)
   @ResponseStatus(HttpStatus.OK)
