@@ -12,6 +12,7 @@ import pills.entity.Category;
 import pills.entity.Pill;
 import pills.entity.User;
 import pills.models.AddAlarmModel;
+import pills.models.AddAlternativeModel;
 import pills.models.AddPillModel;
 import pills.models.AddUserModel;
 import pills.models.AlarmModel;
@@ -54,21 +55,37 @@ public class MappingUtility {
 		return categoryModel;
 	}
 	
-//	   public List<AlternativeModel> mapAlternatives(List<Alternative> alternatives) {
-//	        List<AlternativeModel> alternativeModels = new ArrayList<>();
-//	        for (Alternative alternative : alternatives) {
-//	            alternativeModels.add(mapAlternative(alternative));
-//	        }
-//	        return alternativeModels;
-//	    }
-//	   
-//	    public AlternativeModel mapAlternative(Alternative alternative) {
-//	      AlternativeModel alternativeModel = new AlternativeModel();
-//	      alternativeModel.setAltId(alternative.getAltId());
-//	      alternativeModel.setAlternatePillId(alternative.get);
-//	      alternativeModel.setCategoryName(category.getCategoryName());
-//	        return alternativeModel;
-//	    }
+	   public List<AlternativeModel> mapAlternatives(List<Alternative> alternatives) {
+	        List<AlternativeModel> alternativeModels = new ArrayList<>();
+	        for (Alternative alternative : alternatives) {
+	            alternativeModels.add(mapAlternative(alternative));
+	        }
+	        return alternativeModels;
+	    }
+	   
+	    public AlternativeModel mapAlternative(Alternative alternative) {
+	      AlternativeModel alternativeModel = new AlternativeModel();
+	      alternativeModel.setAltId(alternative.getAltId());
+	      alternativeModel.setAlternatePillId(alternative.getPillByAlternatePillId().getPillId());
+	      alternativeModel.setAlternatePillName(alternative.getPillByAlternatePillId().getPillName());
+	      alternativeModel.setPillId(alternative.getPillByPillId().getPillId());
+	        return alternativeModel;
+	    }
+	    
+	    public Alternative mapAddAlternativeModel(AddAlternativeModel alternativeModel){
+	      Alternative alternative = new Alternative();
+	      alternative.setPillByPillId(new Pill(alternativeModel.getPillId()));
+	      alternative.setPillByAlternatePillId(new Pill(alternativeModel.getAlternatePillId()));
+	        return alternative;
+	    }
+	    
+	       public Alternative mapAlternativeModel(AlternativeModel alternativeModel){
+	          Alternative alternative = new Alternative();
+	          alternative.setAltId(alternativeModel.getAltId());
+	          alternative.setPillByPillId(new Pill(alternativeModel.getPillId()));
+	          alternative.setPillByAlternatePillId(new Pill(alternativeModel.getAlternatePillId()));
+	            return alternative;
+	        }
 	
 	/**
 	 * 

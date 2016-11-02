@@ -51,7 +51,7 @@ public class PillDaoImpl implements PillDao{
   
   @SuppressWarnings("unchecked")
   public List<Pill> getByCategoryId(Integer id){
-	return getSession().createQuery("from Pill where pill_category_id ="+id).list();
+	return getSession().createQuery("from Pill where pill_category_id ="+id+"AND deleted is NULL").list();
   }
 
 

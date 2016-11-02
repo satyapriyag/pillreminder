@@ -5,8 +5,8 @@ package pills.service;
 
 import java.util.List;
 
-//import pills.models.AddAlternativeModel;
-//import pills.models.AlternativeModel;
+import pills.models.AddAlternativeModel;
+import pills.models.AlternativeModel;
 import pills.models.PillModel;
 
 /**
@@ -14,11 +14,11 @@ import pills.models.PillModel;
  *
  */
 public interface AlternativeService{
-	/*public AlternativeModel addAlternative(AddAlternativeModel alternative);
-	public void deleteAlternative(AlternativeModel alternative);
+	public AlternativeModel addAlternative(AddAlternativeModel alternative);
+	public void deleteAlternative(Integer id);
 	public List<AlternativeModel> viewAll();
 	public AlternativeModel viewAlternative(Integer id);
-	public void updateAlternative(AlternativeModel alternative);*/
+	public void updateAlternative(AlternativeModel alternative);
     
   /**
    * Method to retrieve the alternate pills for particular pill 

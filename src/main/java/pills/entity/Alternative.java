@@ -85,9 +85,6 @@ public class Alternative  implements java.io.Serializable {
         this.pillByAlternatePillId = pillByAlternatePillId;
     }
 
-
-
-
 }
 
 

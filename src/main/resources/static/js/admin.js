@@ -2,8 +2,10 @@ $(document)
 		.ready(
 				function() {
 					$(".alert").hide();
+					$(".alts").hide();
 					var deleteButton = "<button class='delete btn btn-warning'>Delete</button>";
 					var editButton = "<button class='edit btn btn-success'>Edit</button>";
+
 					var twoButtons = "<div class='btn-group pull-right'>"
 							+ deleteButton + editButton + "</div>";
 
@@ -49,7 +51,7 @@ $(document)
 				'click',
 				"button.edit",
 				function() {
-					var name='Category';
+					var name = 'Category';
 					var list = $(this).closest("li");
 					var value = list.attr('value');
 					var editItemBox = "<form class='edit";
@@ -64,7 +66,8 @@ $(document)
 					editItemBox += editPill;
 					editItemBox += "<div class='btn-group pull-right'>";
 					editItemBox += "<button class='submit btn btn-primary'>Submit</button>";
-					editItemBox += "<button type='button' class='back"+name+" btn btn-default'>Back</button>";
+					editItemBox += "<button type='button' class='back" + name
+							+ " btn btn-default'>Back</button>";
 					editItemBox += "</div></form>";
 
 					$(this).closest("div.text_holder").replaceWith(editItemBox);
@@ -96,34 +99,37 @@ $(document).on('submit', "form.edit_input_box", function() {
 		}
 	});
 });
-$(document).on('submit', "form.edit_pill_input_box", function() {
-	var categoryId = $("#selectCategory option:selected").val();
-	var list = $(this).closest("li");
-	var id = list.attr('id');
-	console.log(id + $(".itembox").val());
-	$.ajax({
-		url : 'pills/' + id,
-		type : 'PATCH',
-		dataType : 'json',
-		data : JSON.stringify({
-			pillId : id,
-			pillName : $(".itembox").val(),
-			pillCategoryId : $("#editCategory option:selected").val()
-		}),
-		contentType : "application/json",
-		success : function() {
-			$('#selectCategory').find(
-					"option[value = '" + categoryId + "']").attr(
-					"selected", "selected");
-			$('#selectCategory').change();
-			//location.reload();
-			//console.log('success');
-		},
-		error : function(xhr) {
-			location.reload();
-		}
-	});
-});
+$(document).on(
+		'submit',
+		"form.edit_pill_input_box",
+		function() {
+			var categoryId = $("#selectCategory option:selected").val();
+			var list = $(this).closest("li");
+			var id = list.attr('id');
+			console.log(id + $(".itembox").val());
+			$.ajax({
+				url : 'pills/' + id,
+				type : 'PATCH',
+				dataType : 'json',
+				data : JSON.stringify({
+					pillId : id,
+					pillName : $(".itembox").val(),
+					pillCategoryId : $("#editCategory option:selected").val()
+				}),
+				contentType : "application/json",
+				success : function() {
+					$('#selectCategory').find(
+							"option[value = '" + categoryId + "']").attr(
+							"selected", "selected");
+					$('#selectCategory').change();
+					// location.reload();
+					// console.log('success');
+				},
+				error : function(xhr) {
+					location.reload();
+				}
+			});
+		});
 $(document)
 		.on(
 				'click',
@@ -137,7 +143,8 @@ $(document)
 						}
 						var addButton = '<input type="submit" value="Add" class="btn btn-primary add'
 								+ name + '"/>';
-						var backButton = '<button type="button" class="back'+name+' btn btn-default">Back</button>';
+						var backButton = '<button type="button" class="back'
+								+ name + ' btn btn-default">Back</button>';
 						var twoButtons = "<div class='btn-group pull-right'>"
 								+ addButton + backButton + "</div>";
 						var row = '<li class="list-group-item"><input class="cname" type="text" placeholder="Add '
@@ -188,7 +195,7 @@ $(document).on(
 					contentType : "application/json",
 					success : function() {
 						console.log('success');
-						//location.reload();
+						// location.reload();
 						$('#selectCategory').find(
 								"option[value = '" + categoryId + "']").attr(
 								"selected", "selected");
@@ -212,8 +219,9 @@ $(document)
 					}
 					var deleteButton = "<button class='delete btn btn-warning deletePill'>Delete</button>";
 					var editButton = "<button class='edit btn btn-success editPill'>Edit</button>";
+					var altButton = "<button class='alt btn btn-info'>Alternative</button>";
 					var twoButtons = "<div class='btn-group pull-right '>"
-							+ deleteButton + editButton + "</div>";
+							+ altButton + deleteButton + editButton + "</div>";
 					$('#viewPillsList').empty();
 					$.ajax({
 						url : 'categories/' + id + '/pills',
@@ -238,15 +246,17 @@ $(document)
 $(document).on('click', '.backCategory', function() {
 	location.reload();
 });
-$(document).on('click', '.backPill', function() {
-	$(".alert").hide();
-	var id = $("#selectCategory option:selected").val();
-	$('#selectCategory').find(
-			"option[value = '" + id + "']").attr(
-			"selected", "selected");
-	$('#selectCategory').change();
-	
-});
+$(document).on(
+		'click',
+		'.backPill',
+		function() {
+			$(".alert").hide();
+			var id = $("#selectCategory option:selected").val();
+			$('#selectCategory').find("option[value = '" + id + "']").attr(
+					"selected", "selected");
+			$('#selectCategory').change();
+
+		});
 $(document).on('click', '.logout', function() {
 	$.ajax({
 		url : 'logout',
@@ -255,4 +265,122 @@ $(document).on('click', '.logout', function() {
 			window.location.href = './';
 		}
 	});
+});
+
+$(document)
+		.on(
+				'click',
+				'.alt',
+				function() {
+					var list = $(this).closest("li");
+					var pillId = list.attr('id');
+					var pillName = list.attr('value');
+					$(".pills").hide();
+					$(".alts").show();
+					$("#altPill").text(pillName);
+					$("#altPill").val(pillId);
+					var deleteButton = "<button class='deleteAlt btn btn-warning'>Delete</button>";
+					var editButton = "<button class='editAlt btn btn-success'>Edit</button>";
+
+					var twoButtons = "<div class='btn-group pull-right'>"
+							+ deleteButton + "</div>";
+
+					$.ajax({
+						url : 'alternatives',
+						dataType : 'json',
+						success : function(data) {
+
+							$.each(data, function(i, d) {
+								var row1 = '<li class="list-group-item" id="'
+										+ data[i].altId + '" value="'
+										+ data[i].alternatePillName + '">';
+								row1 += '<div class="text_holder" >';
+								row1 += '<label>' + data[i].alternatePillName
+										+ '</label>' + twoButtons
+										+ '<div></li>';
+								$('#viewAlt').append(row1);
+							});
+						}
+					});
+					// console.log(pillId + pillName)
+				});
+
+$(document)
+		.on(
+				'click',
+				'.addAlt',
+				function() {
+					var button = "<button class='altAddSubmit pull-right btn btn-primary'>Submit</button>";
+					var row = '<li class="list-group-item"><select id="selectAltCategory"><option value="0">--Select a category to view pills--</option></select>';
+					row += '<select id="selectAltPill"><option value="0">--Select pills--</option></select>'
+							+ button + '</li>';
+
+					$.ajax({
+						url : 'categories',
+						dataType : 'json',
+						success : function(data) {
+
+							$.each(data, function(i, d) {
+								var row2 = '<option value="'
+										+ data[i].categoryId + '">'
+										+ data[i].categoryName + '</option>';
+								$('#selectAltCategory').append(row2);
+							});
+						}
+					});
+					$('#viewAlt').append(row);
+					$('.addAlt').hide();
+				});
+
+$(document).on(
+		'change',
+		'#selectAltCategory',
+		function() {
+			var id = $("#selectAltCategory option:selected").val();
+			$('#selectAltPill').empty();
+			$.ajax({
+				url : 'categories/' + id + '/pills',
+				dataType : 'json',
+				success : function(data) {
+
+					$.each(data, function(i, d) {
+						var row = '<option value="' + data[i].pillId + '">'
+								+ data[i].pillName + '</option>';
+						$('#selectAltPill').append(row);
+
+					});
+				}
+			});
+
+		});
+
+$(document).on('click', '.altAddSubmit', function() {
+	var pillId = $("#altPill").val();
+	var altId = $("#selectAltPill option:selected").val();
+
+	$.ajax({
+		url : 'alternatives/',
+		type : 'POST',
+		dataType : 'json',
+		data : JSON.stringify({
+			pillId : pillId,
+			alternatePillId : altId
+		}),
+		contentType : "application/json",
+		success : function() {
+			console.log('success');
+		}
+	});
+	$('.addAlt').show();
+});
+
+$(document).on('click', '.deleteAlt', function() {
+	var list = $(this).closest("li");
+	var id = list.attr('id');
+	console.log(id);
+	$.ajax({
+		url : 'alternatives/' + id,
+		type : 'DELETE'
+	});
+	$(this).closest("li").remove();
 });

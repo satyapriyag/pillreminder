@@ -20,6 +20,9 @@ angular.module("app", []).controller("home",
 						console.log("error");
 						self.user = "N/A";
 						self.authenticated = false;
+						//if (status == 401) {
+							self.logout();
+						//}
 					});
 
 					self.logout = function() {

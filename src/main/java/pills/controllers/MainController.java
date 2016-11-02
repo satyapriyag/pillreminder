@@ -34,9 +34,9 @@ import pills.service.AuthenticationService;
 import pills.service.UserService;
 import pills.models.FeedModel;
 
-@EnableOAuth2Sso
+//@EnableOAuth2Sso
 @Controller
-public class MainController extends WebSecurityConfigurerAdapter {
+public class MainController{// extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	AuthenticationService authenticationService;
@@ -44,67 +44,68 @@ public class MainController extends WebSecurityConfigurerAdapter {
 	@Autowired
 	UserService userService;
 
-	/**
-	 * 
-	 * @param principal
-	 * @param session
-	 *            to validate user
-	 * @return LoginResponse containing user info
-	 * @throws UnauthorizedException
-	 *             thrown when either user has no valid session or when he
-	 *             accesses admin portal
-	 * @throws ForbiddenException
-	 * @throws BadRequestException
-	 */
-	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
-	public LoginResponse loginUser(Principal principal, HttpSession session)
-			throws UnauthorizedException, ForbiddenException, BadRequestException {
-		if (principal == null)
-			throw new ForbiddenException("Access forbiden");
-		OAuth2Authentication auth = (OAuth2Authentication) principal;
-
-		if (auth.isAuthenticated()) {
-			@SuppressWarnings("unchecked")
-			LinkedHashMap<String, String> details = (LinkedHashMap<String, String>) auth.getUserAuthentication()
-					.getDetails();
-
-			// String domain = details.get("hd");
-			// if (!"practo.com".equalsIgnoreCase(domain))
-			// throw new UnauthorizedException("Unauthorized user");
-
-			String email = details.get("email");
-			String name = details.get("name");
-
-			LoginResponse user = new LoginResponse();
-			user.setUserEmail(email);
-			user.setUserName(name);
-
-			if ("satyapriya.g@gmail.com".equalsIgnoreCase(email)) {
-				session.setAttribute("id", 1);
-				user.setUserRole(1);
-				user.setUserId(1);
-				return user;
-			} else {
-				user.setUserRole(2);
-			}
-
-			Integer id = userService.addOrUpdate(user);
-			user.setUserId(id);
-			session.setAttribute("id", id);
-			return user;
-
-		} else {
-			throw new UnauthorizedException("Login failed. Please try again");
-		}
-	}
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.antMatcher("/**").authorizeRequests().antMatchers("/**", "/login**", "/webjars/**", "/js/**").permitAll()
-				.anyRequest().authenticated().and().logout().logoutSuccessUrl("/").permitAll().and().csrf().disable();
-	}
+//	/**
+//	 * 
+//	 * @param principal
+//	 * @param session
+//	 *            to validate user
+//	 * @return LoginResponse containing user info
+//	 * @throws UnauthorizedException
+//	 *             thrown when either user has no valid session or when he
+//	 *             accesses admin portal
+//	 * @throws ForbiddenException
+//	 * @throws BadRequestException
+//	 */
+//	@RequestMapping(value = "/user", method = RequestMethod.GET)
+//	@ResponseStatus(HttpStatus.OK)
+//	@ResponseBody
+//	public LoginResponse loginUser(Principal principal, HttpSession session)
+//			throws UnauthorizedException, ForbiddenException, BadRequestException {
+//		if (principal == null)
+//			throw new ForbiddenException("Access forbiden");
+//		OAuth2Authentication auth = (OAuth2Authentication) principal;
+//
+//		if (auth.isAuthenticated()) {
+//			@SuppressWarnings("unchecked")
+//			LinkedHashMap<String, String> details = (LinkedHashMap<String, String>) auth.getUserAuthentication()
+//					.getDetails();
+//			System.out.println(details);
+//			 String domain = details.get("hd");
+//			 if (!"practo.com".equalsIgnoreCase(domain)){
+//			   System.out.println("domain"+domain);
+//			 throw new UnauthorizedException("Unauthorized user");}
+//
+//			String email = details.get("email");
+//			String name = details.get("name");
+//
+//			LoginResponse user = new LoginResponse();
+//			user.setUserEmail(email);
+//			user.setUserName(name);
+//
+//			if ("satya.priya@practo.com".equalsIgnoreCase(email)) {
+//				session.setAttribute("id", 1);
+//				user.setUserRole(1);
+//				user.setUserId(1);
+//				return user;
+//			} else {
+//				user.setUserRole(2);
+//			}
+//
+//			Integer id = userService.addOrUpdate(user);
+//			user.setUserId(id);
+//			session.setAttribute("id", id);
+//			return user;
+//
+//		} else {
+//			throw new UnauthorizedException("Login failed. Please try again");
+//		}
+//	}
+//
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		http.antMatcher("/**").authorizeRequests().antMatchers("/**", "/login**", "/webjars/**", "/js/**").permitAll()
+//				.anyRequest().authenticated().and().logout().logoutSuccessUrl("/").permitAll().and().csrf().disable();
+//	}
 
 	/**
 	 * 
@@ -142,7 +143,13 @@ public class MainController extends WebSecurityConfigurerAdapter {
 		authenticationService.validateAdmin(id);
 		return "PillsManager";
 	}
-
+	
+	@RequestMapping(value = "/altManager", method = RequestMethod.GET)
+    public String altView(HttpSession session) throws UnauthorizedException {
+        Integer id = authenticationService.validateSession(session);
+        authenticationService.validateAdmin(id);
+        return "AlternateManager";
+    }
 	/**
 	 * Controller to render User Home page
 	 * 
