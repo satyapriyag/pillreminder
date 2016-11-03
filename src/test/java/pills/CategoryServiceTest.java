@@ -12,18 +12,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestComponent;
-import org.springframework.orm.hibernate5.HibernateObjectRetrievalFailureException;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.hibernate.ObjectNotFoundException;
 
 import inti.ws.spring.exception.client.BadRequestException;
-import pills.models.AddPillModel;
 import pills.models.CategoryModel;
-import pills.models.PillModel;
 import pills.service.CategoryService;
-import pills.service.PillService;
 
 
 @RunWith(SpringRunner.class)
@@ -34,10 +30,7 @@ public class CategoryServiceTest{
 	@Autowired
 	private CategoryService service;
 	
-	@Autowired
-	private PillService pillService;
 
-	//@Test(expected = HibernateObjectRetrievalFailureException.class)
 	@Test(expected = ObjectNotFoundException.class)
 	@Rollback(true)
 	public void deleteCategoryTest() throws BadRequestException {

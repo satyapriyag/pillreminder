@@ -67,7 +67,7 @@ public class AlarmServiceTest{
 		assertTrue(alarmModel.getAId() > 0);
 
 		alarmService.deleteAlarm(alarmModel.getAId());
-		UserAlarmModel ualarmModel = alarmService.viewAlarm(alarmModel.getAId());
+		alarmService.viewAlarm(alarmModel.getAId());
 
 	}
 	
