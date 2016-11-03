@@ -65,7 +65,6 @@ public class CategoryServiceImpl implements CategoryService {
 		Category updatedCategory = mapUtility.mapCategoryModel(category);
 		categoryDao.update(updatedCategory);
 		logger.info("Category is updtaed");
-		logger.warn("Testing");
 		return mapUtility.mapCategory(categoryDao.getById(id));
 	}
 }

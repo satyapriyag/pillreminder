@@ -6,13 +6,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import inti.ws.spring.exception.client.BadRequestException;
@@ -55,7 +53,6 @@ public class AuthController extends WebSecurityConfigurerAdapter {
             @SuppressWarnings("unchecked")
             LinkedHashMap<String, String> details = (LinkedHashMap<String, String>) auth.getUserAuthentication()
                     .getDetails();
-            System.out.println(details);
 //             String domain = details.get("hd");
 //             if (!"practo.com".equalsIgnoreCase(domain)){
 //               System.out.println("domain"+domain);

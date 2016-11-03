@@ -12,28 +12,28 @@ import pills.service.MailContentBuilder;
 
 @Component
 public class MailerService {
-	
-	@Autowired
-	private JavaMailSender javaMailSender;	
-	@Autowired
-    private MailContentBuilder mailContentBuilder;
-	
-	public void send(String to, String subject, String body, String name) throws MessagingException {
-		
-		MimeMessage message = javaMailSender.createMimeMessage();
-		MimeMessageHelper helper;
-		
-		helper = new MimeMessageHelper(message, true); // true indicates
-													   // multipart message
-		helper.setSubject(subject);
-		helper.setTo(to);
-		String content = mailContentBuilder.build(body,name);
-		helper.setText(content, true); // true indicates html
-		helper.setFrom("PillReminder");
-		
-		javaMailSender.send(message);
-		
-		
-	}
+
+  @Autowired
+  private JavaMailSender javaMailSender;
+  @Autowired
+  private MailContentBuilder mailContentBuilder;
+
+  public void send(String to, String subject, String body, String name) throws MessagingException {
+
+    MimeMessage message = javaMailSender.createMimeMessage();
+    MimeMessageHelper helper;
+
+    helper = new MimeMessageHelper(message, true); // true indicates
+                                                   // multipart message
+    helper.setSubject(subject);
+    helper.setTo(to);
+    String content = mailContentBuilder.build(body, name);
+    helper.setText(content, true); // true indicates html
+    helper.setFrom("PillReminder");
+
+    javaMailSender.send(message);
+
+
+  }
 
 }

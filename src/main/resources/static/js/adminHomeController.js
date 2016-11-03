@@ -12,7 +12,6 @@ angular.module("app", []).controller("home",
 						if (self.user.userRole == 1) {
 							self.role1 = true;
 						} else {
-							/* $location.path("/quizplay"); */
 							self.role1 = false;
 						}
 
