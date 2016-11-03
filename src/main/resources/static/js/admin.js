@@ -369,6 +369,7 @@ $(document).on('click', '.altAddSubmit', function() {
 		contentType : "application/json",
 		success : function() {
 			console.log('success');
+			location.reload();
 		}
 	});
 	$('.addAlt').show();
